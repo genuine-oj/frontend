@@ -1,0 +1,56 @@
+{
+  "pages": {
+    "home": "",
+    "contests": "",
+    "problems": "",
+    "submissions": ""
+  },
+  "problemData": {
+    "score": ""
+  },
+  "save": "",
+  "problem": {
+    "problemList": "",
+    "problemDetail": "",
+    "judgeSettings": "",
+    "problemEdit": "",
+    "problemDescription": "",
+    "inputFormat": "",
+    "outputFormat": "",
+    "samples": "",
+    "input": "",
+    "output": "",
+    "hint": "",
+    "selectLanguage": "",
+    "loadCodeFile": "",
+    "submitCode": "",
+    "editCode": "",
+    "showProblem": "",
+    "timeLimit": "",
+    "memoryLimit": "",
+    "acceptedNumber": "",
+    "submittedNumber": "",
+    "mySubmissions": "",
+    "codeReplacementConfirm": "",
+    "problemCreate": "",
+    "problemTitle": ""
+  },
+  "saveSuccess": "",
+  "saveFailed": "",
+  "confirm": "",
+  "cancel": "",
+  "problems": {
+    "title": "",
+    "acRate": ""
+  },
+  "submission": {
+    "problem": "",
+    "submitter": "",
+    "status": "",
+    "score": "",
+    "usedTime": "",
+    "memory": "",
+    "solution": "",
+    "submitTime": ""
+  }
+}
