@@ -27,7 +27,7 @@ slugs.forEach(slug => {
     lastPart = part
     obj = obj[part]
   }
-  lastObj[lastPart] = ''
+  lastObj[lastPart] = slug
 })
 
 fs.writeFileSync(target, JSON.stringify(result, null, '  '))
