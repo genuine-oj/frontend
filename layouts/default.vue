@@ -23,12 +23,10 @@
           exact
         >
           <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
+            <v-icon v-text='item.icon' />
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>
-              {{ $t(item.title) }}
-            </v-list-item-title>
+            <v-list-item-title v-text='item.title' />
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -128,28 +126,6 @@ export default {
     return {
       drawer: this.$vuetify.breakpoint.mdAndUp,
       mini: this.$vuetify.breakpoint.mdAndUp,
-      navItems: [
-        {
-          icon: 'mdi-home-outline',
-          title: 'pages.home',
-          to: '/'
-        },
-        {
-          icon: 'mdi-trophy-outline',
-          title: 'pages.contests',
-          to: '/contest'
-        },
-        {
-          icon: 'mdi-format-list-text',
-          title: 'pages.problems',
-          to: '/problem'
-        },
-        {
-          icon: 'mdi-timer-sand',
-          title: 'pages.submissions',
-          to: '/submission'
-        }
-      ],
       i18n: {
         locals: this.$i18n.locales.filter(i => i.code !== this.$i18n.locale)
       },
@@ -159,6 +135,30 @@ export default {
   computed: {
     availableLocales() {
       return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale)
+    },
+    navItems() {
+      return [
+        {
+          icon: 'mdi-home-outline',
+          title: this.$t('pages.home'),
+          to: '/'
+        },
+        {
+          icon: 'mdi-trophy-outline',
+          title: this.$t('pages.contests'),
+          to: '/contest'
+        },
+        {
+          icon: 'mdi-format-list-text',
+          title: this.$t('pages.problems'),
+          to: '/problem'
+        },
+        {
+          icon: 'mdi-timer-sand',
+          title: this.$t('pages.submissions'),
+          to: '/submission'
+        }
+      ]
     },
     ...mapGetters(['isAuthenticated']),
     ...mapState(['user', 'loading'])

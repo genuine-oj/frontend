@@ -35,10 +35,10 @@ export default {
         { text: this.$t('submission.submitter'), value: 'user', width: '10%' },
         { text: this.$t('submission.status'), value: 'status', width: '10%' },
         { text: this.$t('submission.score'), value: 'score', width: '10%' },
-        { text: this.$t('submission.used_time'), value: 'used_time', width: '10%' },
+        { text: this.$t('submission.usedTime'), value: 'used_time', width: '10%' },
         { text: this.$t('submission.memory'), value: 'memory', width: '10%' },
         { text: this.$t('submission.solution'), value: 'solution', width: '15%' },
-        { text: this.$t('submission.submit_time'), value: 'submit_time', width: '21%' }
+        { text: this.$t('submission.submitTime'), value: 'submit_time', width: '21%' }
       ]
     },
     submissions() {
@@ -47,7 +47,7 @@ export default {
           id: e.id,
           problem: e.problem,
           user: e.user.username + (e.user.real_name ? `(${e.user.real_name})` : ''),
-          status: this.$t(this.$utils.codeJudge.judgeStatus.getDisplay(e.status)),
+          status: this.$utils.codeJudge.judgeStatus.getDisplay(e.status),
           score: e.score,
           used_time: e.execute_time ?? '--',
           memory: this.$utils.misc.parseSize(e.execute_memory) ?? '--',

@@ -3,13 +3,14 @@
     <v-breadcrumbs :items='breadCrumbs' />
     <v-row>
       <v-col>
-        <h4 class='text-h4' v-text='$t("problem.problemEdit")' />
+        <h4 class='text-h4' v-text='$t("problem.problemCreate")' />
       </v-col>
     </v-row>
     <v-row>
       <v-col cols='12'>
         <v-text-field
           v-model='problem.title'
+          :placeholder='$t("problem.problemTitle")'
           outlined
           hide-details
         />
@@ -140,12 +141,9 @@
 import MdEditor from '~/components/md-editor'
 
 export default {
-  name: 'ProblemEditPage',
+  name: 'ProblemCreatePage',
   components: {
     MdEditor
-  },
-  validate({ params }) {
-    return /^\d+$/.test(params.id)
   },
   data() {
     return {
@@ -163,29 +161,13 @@ export default {
           exact: true
         },
         {
-          text: this.$t('problem.problemDetail'),
-          disabled: false,
-          to: `/problem/${this.problem.id}`,
-          nuxt: true,
-          exact: true
-        },
-        {
-          text: this.$t('problem.problemEdit'),
+          text: this.$t('problem.problemCreate'),
           disabled: true
         }
       ]
     }
   },
-  mounted() {
-    this.problem = { id: this.$route.params.id }
-    this.loadData()
-  },
   methods: {
-    async loadData() {
-      await this.$store.dispatch('startLoading')
-      this.problem = await this.$axios.get(`/problem/${this.problem.id}/`)
-      await this.$store.dispatch('stopLoading')
-    },
     saveData() {
       this.$axios.put(`/problem/${this.problem.id}/`, this.problem).then(res => {
         this.problem = res

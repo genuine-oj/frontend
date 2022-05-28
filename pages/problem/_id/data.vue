@@ -334,9 +334,9 @@ export default {
         this.data = res
         this.newCases = []
         this.deleteCases = []
-        this.$swal(this.$t('problemData.updateSuccess'), '', 'success')
+        this.$swal(this.$t('saveSuccess'), '', 'success')
       }).catch(err => {
-        if (typeof (err) === 'string') this.$swal(this.$t('problemData.updateFailed'), err, 'error')
+        if (typeof (err) === 'string') this.$swal(this.$t('saveFailed'), err, 'error')
       })
     },
     updateScore(value, item) {

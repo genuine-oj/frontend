@@ -22,15 +22,15 @@ const judgeStatus = {
 
 
 const judgeStatusDisplay = {
-  PENDING: 'judgeStatus.pending',
-  JUDGING: 'judgeStatus.judging',
-  COMPILE_ERROR: 'judgeStatus.ce',
-  WRONG_ANSWER: 'judgeStatus.wa',
-  ACCEPTED: 'judgeStatus.ac',
-  TIME_LIMIT_EXCEEDED: 'judgeStatus.tle',
-  MEMORY_LIMIT_EXCEEDED: 'judgeStatus.mle',
-  RUNTIME_ERROR: 'judgeStatus.re',
-  SYSTEM_ERROR: 'judgeStatus.se'
+  PENDING: 'Pending',
+  JUDGING: 'Judging',
+  COMPILE_ERROR: 'CE',
+  WRONG_ANSWER: 'WA',
+  ACCEPTED: 'AC',
+  TIME_LIMIT_EXCEEDED: 'TLE',
+  MEMORY_LIMIT_EXCEEDED: 'MLE',
+  RUNTIME_ERROR: 'RE',
+  SYSTEM_ERROR: 'SE'
 }
 
 const languages = {
