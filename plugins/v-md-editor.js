@@ -3,10 +3,14 @@
 import Vue from 'vue'
 import VMdEditor from '@kangc/v-md-editor/lib/codemirror-editor'
 import '@kangc/v-md-editor/lib/style/codemirror-editor.css'
-import vuepressTheme from '@kangc/v-md-editor/lib/theme/vuepress.js'
-import '@kangc/v-md-editor/lib/theme/style/vuepress.css'
+import githubTheme from '@kangc/v-md-editor/lib/theme/github.js'
+import '@kangc/v-md-editor/lib/theme/style/github.css'
 
-import Prism from 'prismjs'
+import hljs from 'highlight.js/lib/core'
+
+import c from 'highlight.js/lib/languages/c'
+import cpp from 'highlight.js/lib/languages/cpp'
+
 import Codemirror from 'codemirror'
 
 import 'codemirror/mode/markdown/markdown'
@@ -37,8 +41,11 @@ import enUS from '@kangc/v-md-editor/lib/lang/en-US'
 
 VMdEditor.Codemirror = Codemirror
 
-VMdEditor.use(vuepressTheme, {
-  Prism
+hljs.registerLanguage('c', c)
+hljs.registerLanguage('cpp', cpp)
+
+VMdEditor.use(githubTheme, {
+  Hljs: hljs
 })
   .use(createKatexPlugin())
   .use(createCopyCodePlugin())

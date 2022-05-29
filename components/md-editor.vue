@@ -37,7 +37,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep .vuepress-markdown-body {
-  padding: 0 !important;
+::v-deep code {
+  background-color: transparent !important;
 }
 </style>

@@ -17,7 +17,7 @@
           <v-toolbar flat color="primary" dark dense>
             <v-toolbar-title v-text="$t('problem.problemDescription')" />
           </v-toolbar>
-          <md-editor v-model="problem.description" mode="editpreview" />
+          <md-editor v-model="problem.description" />
         </v-card>
       </v-col>
     </v-row>

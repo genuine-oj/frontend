@@ -49,7 +49,7 @@
           </v-col>
           <v-col v-if="$vuetify.breakpoint.mdAndUp" md="auto">
             <v-btn color="primary" block @click="uploadCodeFile">
-              <v-icon left> mdi-file </v-icon>
+              <v-icon left> mdi-file</v-icon>
               {{ $t('problem.loadCodeFile') }}
             </v-btn>
             <input
@@ -62,7 +62,7 @@
           </v-col>
           <v-col cols="5" md="auto">
             <v-btn color="success" block @click="submitCode">
-              <v-icon left> mdi-upload </v-icon>
+              <v-icon left> mdi-upload</v-icon>
               {{ $t('problem.submitCode') }}
             </v-btn>
           </v-col>
@@ -79,11 +79,11 @@
         <v-row class="mx-3 spaced" dense>
           <v-col cols="12" @click="showCode = !showCode">
             <v-btn v-if="!showCode" color="primary" block>
-              <v-icon left> mdi-xml </v-icon>
+              <v-icon left> mdi-xml</v-icon>
               {{ $t('problem.editCode') }}
             </v-btn>
             <v-btn v-else color="primary" block outlined>
-              <v-icon left> mdi-text </v-icon>
+              <v-icon left> mdi-text</v-icon>
               {{ $t('problem.showProblem') }}
             </v-btn>
           </v-col>
@@ -96,7 +96,7 @@
                 dark
                 block
               >
-                <v-icon left> mdi-pencil </v-icon>
+                <v-icon left> mdi-pencil</v-icon>
                 {{ $t('problem.problemEdit') }}
               </v-btn>
             </v-col>
@@ -108,7 +108,7 @@
                 dark
                 block
               >
-                <v-icon left> mdi-database-cog </v-icon>
+                <v-icon left> mdi-database-cog</v-icon>
                 {{ $t('problem.judgeSettings') }}
               </v-btn>
             </v-col>
@@ -122,7 +122,7 @@
                   dark
                   :title="$t('problem.timeLimit')"
                 >
-                  <v-icon left> mdi-clock </v-icon>
+                  <v-icon left> mdi-clock</v-icon>
                   {{ problem.time_limit / 1000 }}s
                 </v-chip>
                 <v-chip
@@ -130,7 +130,7 @@
                   dark
                   :title="$t('problem.memoryLimit')"
                 >
-                  <v-icon left> mdi-memory </v-icon>
+                  <v-icon left> mdi-memory</v-icon>
                   {{ problem.memory_limit }}MB
                 </v-chip>
               </v-col>
@@ -141,7 +141,7 @@
                   dark
                   :title="$t('problem.acceptedNumber')"
                 >
-                  <v-icon left> mdi-flag </v-icon>
+                  <v-icon left> mdi-flag</v-icon>
                   1222
                 </v-chip>
                 <v-chip
@@ -149,7 +149,7 @@
                   dark
                   :title="$t('problem.submittedNumber')"
                 >
-                  <v-icon left> mdi-upload </v-icon>
+                  <v-icon left> mdi-upload</v-icon>
                   2000
                 </v-chip>
               </v-col>
@@ -157,7 +157,7 @@
           </v-col>
           <v-col cols="12">
             <v-btn color="primary" text>
-              <v-icon left> mdi-file-multiple-outline </v-icon>
+              <v-icon left> mdi-file-multiple-outline</v-icon>
               {{ $t('problem.mySubmissions') }}
             </v-btn>
           </v-col>
@@ -315,8 +315,8 @@ export default {
   height: 500px;
 }
 
-::v-deep .vuepress-markdown-body {
-  padding: 0 !important;
+::v-deep .github-markdown-body {
+  padding: 6px 0 0 0 !important;
 }
 
 .spaced > * {

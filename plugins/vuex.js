@@ -1,8 +1,7 @@
-import VuexPersist from 'vuex-persist'
+import createPersistedState from 'vuex-persistedstate'
 
 export default ({ store }) => {
-  new VuexPersist({
-    modules: ['token', 'user'],
-    storage: window.sessionStorage
-  }).plugin(store)
+  createPersistedState({
+    paths: ['token', 'user']
+  })(store)
 }

@@ -22,7 +22,7 @@
           <v-toolbar flat color="primary" dark dense>
             <v-toolbar-title v-text="$t('problem.problemDescription')" />
           </v-toolbar>
-          <md-editor v-model="problem.description" mode="editpreview" />
+          <md-editor v-model="problem.description" />
         </v-card>
       </v-col>
     </v-row>
@@ -105,7 +105,7 @@
     <v-row class="justify-center">
       <v-col cols="4" md="2">
         <v-btn color="primary" block @click="saveData">
-          <v-icon left> mdi-content-save-all </v-icon>
+          <v-icon left> mdi-content-save-all</v-icon>
           {{ $t('save') }}
         </v-btn>
       </v-col>
@@ -146,7 +146,7 @@ export default {
   methods: {
     saveData() {
       this.$axios
-        .put(`/problem/${this.problem.id}/`, this.problem)
+        .post(`/problem/${this.problem.id}/`, this.problem)
         .then(res => {
           this.problem = res
           this.$swal(this.$t('saveSuccess'), '', 'success')
