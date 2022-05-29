@@ -1,19 +1,18 @@
 {
+  "cancel": "cancel",
+  "confirm": "confirm",
   "pages": {
     "home": "pages.home",
     "contests": "pages.contests",
     "problems": "pages.problems",
     "submissions": "pages.submissions"
   },
-  "problemData": {
-    "score": "problemData.score"
-  },
-  "save": "save",
   "problem": {
     "problemList": "problem.problemList",
     "problemDetail": "problem.problemDetail",
-    "judgeSettings": "problem.judgeSettings",
+    "problemCreate": "problem.problemCreate",
     "problemEdit": "problem.problemEdit",
+    "problemTitle": "problem.problemTitle",
     "problemDescription": "problem.problemDescription",
     "inputFormat": "problem.inputFormat",
     "outputFormat": "problem.outputFormat",
@@ -21,28 +20,29 @@
     "input": "problem.input",
     "output": "problem.output",
     "hint": "problem.hint",
-    "selectLanguage": "problem.selectLanguage",
-    "loadCodeFile": "problem.loadCodeFile",
-    "submitCode": "problem.submitCode",
-    "editCode": "problem.editCode",
-    "showProblem": "problem.showProblem",
     "timeLimit": "problem.timeLimit",
     "memoryLimit": "problem.memoryLimit",
     "acceptedNumber": "problem.acceptedNumber",
     "submittedNumber": "problem.submittedNumber",
     "mySubmissions": "problem.mySubmissions",
     "codeReplacementConfirm": "problem.codeReplacementConfirm",
-    "problemCreate": "problem.problemCreate",
-    "problemTitle": "problem.problemTitle"
+    "selectLanguage": "problem.selectLanguage",
+    "loadCodeFile": "problem.loadCodeFile",
+    "submitCode": "problem.submitCode",
+    "editCode": "problem.editCode",
+    "showProblem": "problem.showProblem",
+    "judgeSettings": "problem.judgeSettings"
   },
-  "saveSuccess": "saveSuccess",
-  "saveFailed": "saveFailed",
-  "confirm": "confirm",
-  "cancel": "cancel",
+  "problemData": {
+    "score": "problemData.score"
+  },
   "problems": {
     "title": "problems.title",
     "acRate": "problems.acRate"
   },
+  "save": "save",
+  "saveFailed": "saveFailed",
+  "saveSuccess": "saveSuccess",
   "submission": {
     "problem": "submission.problem",
     "submitter": "submission.submitter",
