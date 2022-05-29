@@ -1,9 +1,9 @@
 {
   "pages": {
-    "home": "pages.home",
-    "contests": "pages.contests",
-    "problems": "pages.problems",
-    "submissions": "pages.submissions"
+    "home": "主页",
+    "contests": "比赛",
+    "problems": "题目",
+    "submissions": "提交"
   },
   "problemData": {
     "score": "problemData.score"
