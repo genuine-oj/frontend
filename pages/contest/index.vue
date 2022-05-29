@@ -20,6 +20,6 @@ export default {
     return {
       title: this.$t('pages.contests')
     }
-  },
+  }
 }
 </script>

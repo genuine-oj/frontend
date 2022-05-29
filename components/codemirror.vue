@@ -1,5 +1,5 @@
 <template>
-  <base-codemirror v-model='code' :options='codemirrorOptions' />
+  <base-codemirror v-model="code" :options="codemirrorOptions" />
 </template>
 
 <script>
@@ -37,6 +37,4 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

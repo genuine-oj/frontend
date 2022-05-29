@@ -1,199 +1,180 @@
 <template>
   <div>
-    <v-breadcrumbs :items='breadCrumbs' />
+    <v-breadcrumbs :items="breadCrumbs" />
     <v-row>
-      <v-col cols='12' md='8' lg='9'>
-        <template v-if='!showCode'>
-          <h2 class='text-h4 mb-1' v-text='problem.title' />
-          <h4 class='text-h5' v-text='$t("problem.problemDescription")' />
-          <md-editor :value='problem.description' mode='preview' />
-          <h4 class='text-h5' v-text='$t("problem.inputFormat")' />
-          <md-editor :value='problem.input_format' mode='preview' />
-          <h4 class='text-h5' v-text='$t("problem.outputFormat")' />
-          <md-editor :value='problem.output_format' mode='preview' />
-          <h4 class='text-h5' v-text='$t("problem.samples")' />
-          <v-row v-for='sample in filteredSamples' :key='sample.index'>
-            <v-col cols='6'>
-              <h5 class='text-h6' v-text='$t("problem.input", { id: sample.index })' />
-              <code v-text='sample.input' />
+      <v-col cols="12" md="8" lg="9">
+        <template v-if="!showCode">
+          <h2 class="text-h4 mb-1" v-text="problem.title" />
+          <h4 class="text-h5" v-text="$t('problem.problemDescription')" />
+          <md-editor :value="problem.description" mode="preview" />
+          <h4 class="text-h5" v-text="$t('problem.inputFormat')" />
+          <md-editor :value="problem.input_format" mode="preview" />
+          <h4 class="text-h5" v-text="$t('problem.outputFormat')" />
+          <md-editor :value="problem.output_format" mode="preview" />
+          <h4 class="text-h5" v-text="$t('problem.samples')" />
+          <v-row v-for="sample in filteredSamples" :key="sample.index">
+            <v-col cols="6">
+              <h5
+                class="text-h6"
+                v-text="$t('problem.input', { id: sample.index })"
+              />
+              <code v-text="sample.input" />
             </v-col>
-            <v-col cols='6'>
-              <h5 class='text-h6' v-text='$t("problem.output", { id: sample.index })' />
-              <code v-text='sample.output' />
+            <v-col cols="6">
+              <h5
+                class="text-h6"
+                v-text="$t('problem.output', { id: sample.index })"
+              />
+              <code v-text="sample.output" />
             </v-col>
           </v-row>
-          <template v-if='problem.hint'>
-            <h4 class='text-h5 mt-1' v-text='$t("problem.hint")' />
-            <md-editor :value='problem.hint' mode='preview' />
+          <template v-if="problem.hint">
+            <h4 class="text-h5 mt-1" v-text="$t('problem.hint')" />
+            <md-editor :value="problem.hint" mode="preview" />
           </template>
         </template>
         <v-row v-else>
-          <v-col cols='7' md='auto'>
+          <v-col cols="7" md="auto">
             <v-select
-              v-model='selectedLanguage'
-              :items='languages'
-              item-text='name'
-              item-value='slug'
-              :label='$t("problem.selectLanguage")'
+              v-model="selectedLanguage"
+              :items="languages"
+              item-text="name"
+              item-value="slug"
+              :label="$t('problem.selectLanguage')"
               return-object
               dense
               outlined
               hide-details
             ></v-select>
           </v-col>
-          <v-col v-if='$vuetify.breakpoint.mdAndUp' md='auto'>
-            <v-btn color='primary' block @click='uploadCodeFile'>
-              <v-icon left>
-                mdi-file
-              </v-icon>
+          <v-col v-if="$vuetify.breakpoint.mdAndUp" md="auto">
+            <v-btn color="primary" block @click="uploadCodeFile">
+              <v-icon left> mdi-file </v-icon>
               {{ $t('problem.loadCodeFile') }}
             </v-btn>
             <input
-              ref='codeFileInput'
-              type='file'
-              class='d-none'
-              :accept='`.${selectedLanguage.ext}`'
-              @change='readCodeFile'
+              ref="codeFileInput"
+              type="file"
+              class="d-none"
+              :accept="`.${selectedLanguage.ext}`"
+              @change="readCodeFile"
             />
           </v-col>
-          <v-col cols='5' md='auto'>
-            <v-btn color='success' block @click='submitCode'>
-              <v-icon left>
-                mdi-upload
-              </v-icon>
+          <v-col cols="5" md="auto">
+            <v-btn color="success" block @click="submitCode">
+              <v-icon left> mdi-upload </v-icon>
               {{ $t('problem.submitCode') }}
             </v-btn>
           </v-col>
-          <v-col cols='12'>
+          <v-col cols="12">
             <codemirror
-              ref='codemirror'
-              v-model='code'
-              :mime='selectedLanguage.mime'
+              ref="codemirror"
+              v-model="code"
+              :mime="selectedLanguage.mime"
             />
           </v-col>
         </v-row>
       </v-col>
-      <v-col cols='12' md='4' lg='3' class='text-center'>
-        <v-row class='mx-3 spaced' dense>
-          <v-col cols='12' @click='showCode = !showCode'>
-            <v-btn v-if='!showCode' color='primary' block>
-              <v-icon left>
-                mdi-xml
-              </v-icon>
+      <v-col cols="12" md="4" lg="3" class="text-center">
+        <v-row class="mx-3 spaced" dense>
+          <v-col cols="12" @click="showCode = !showCode">
+            <v-btn v-if="!showCode" color="primary" block>
+              <v-icon left> mdi-xml </v-icon>
               {{ $t('problem.editCode') }}
             </v-btn>
-            <v-btn v-else color='primary' block outlined>
-              <v-icon left>
-                mdi-text
-              </v-icon>
+            <v-btn v-else color="primary" block outlined>
+              <v-icon left> mdi-text </v-icon>
               {{ $t('problem.showProblem') }}
             </v-btn>
           </v-col>
-          <template v-if='!showCode && isAdmin'>
-            <v-col cols='6'>
+          <template v-if="!showCode && isAdmin">
+            <v-col cols="6">
               <v-btn
-                color='indigo'
-                :to='`/problem/${problem.id}/edit`'
+                color="indigo"
+                :to="`/problem/${problem.id}/edit`"
                 exact
                 dark
                 block
               >
-                <v-icon left>
-                  mdi-pencil
-                </v-icon>
+                <v-icon left> mdi-pencil </v-icon>
                 {{ $t('problem.problemEdit') }}
               </v-btn>
             </v-col>
-            <v-col cols='6'>
+            <v-col cols="6">
               <v-btn
-                color='blue-grey'
-                :to='`/problem/${problem.id}/data`'
+                color="blue-grey"
+                :to="`/problem/${problem.id}/data`"
                 exact
                 dark
                 block
               >
-                <v-icon left>
-                  mdi-database-cog
-                </v-icon>
+                <v-icon left> mdi-database-cog </v-icon>
                 {{ $t('problem.judgeSettings') }}
               </v-btn>
             </v-col>
           </template>
-          <v-col cols='12'>
+          <v-col cols="12">
             <v-row dense>
-              <v-col cols='12'>
+              <v-col cols="12">
                 <v-chip
-                  class='mr-2'
-                  color='pink'
+                  class="mr-2"
+                  color="pink"
                   dark
-                  :title='$t("problem.timeLimit")'
+                  :title="$t('problem.timeLimit')"
                 >
-                  <v-icon left>
-                    mdi-clock
-                  </v-icon>
+                  <v-icon left> mdi-clock </v-icon>
                   {{ problem.time_limit / 1000 }}s
                 </v-chip>
                 <v-chip
-                  color='light-blue'
+                  color="light-blue"
                   dark
-                  :title='$t("problem.memoryLimit")'
+                  :title="$t('problem.memoryLimit')"
                 >
-                  <v-icon left>
-                    mdi-memory
-                  </v-icon>
+                  <v-icon left> mdi-memory </v-icon>
                   {{ problem.memory_limit }}MB
                 </v-chip>
               </v-col>
-              <v-col cols='12'>
+              <v-col cols="12">
                 <v-chip
-                  class='mr-2'
-                  color='green'
+                  class="mr-2"
+                  color="green"
                   dark
-                  :title='$t("problem.acceptedNumber")'
+                  :title="$t('problem.acceptedNumber')"
                 >
-                  <v-icon left>
-                    mdi-flag
-                  </v-icon>
+                  <v-icon left> mdi-flag </v-icon>
                   1222
                 </v-chip>
                 <v-chip
-                  color='purple lighten-1'
+                  color="purple lighten-1"
                   dark
-                  :title='$t("problem.submittedNumber")'
+                  :title="$t('problem.submittedNumber')"
                 >
-                  <v-icon left>
-                    mdi-upload
-                  </v-icon>
+                  <v-icon left> mdi-upload </v-icon>
                   2000
                 </v-chip>
               </v-col>
             </v-row>
           </v-col>
-          <v-col cols='12'>
-            <v-btn color='primary' text>
-              <v-icon left>
-                mdi-file-multiple-outline
-              </v-icon>
+          <v-col cols="12">
+            <v-btn color="primary" text>
+              <v-icon left> mdi-file-multiple-outline </v-icon>
               {{ $t('problem.mySubmissions') }}
             </v-btn>
           </v-col>
-          <v-col cols='12'>
+          <v-col cols="12">
             <v-card>
-              <v-list subheader dense class='text-left'>
-                <v-subheader v-text='"最近提交"' />
-                <v-list-item
-                  v-for='item in recentSubmissions'
-                  :key='item.id'
-                >
+              <v-list subheader dense class="text-left">
+                <v-subheader v-text="'最近提交'" />
+                <v-list-item v-for="item in recentSubmissions" :key="item.id">
                   <v-list-item-avatar>
-                    <v-img :src='$utils.misc.avatar.get(item.email)' />
+                    <v-img :src="$utils.misc.avatar.get(item.email)" />
                   </v-list-item-avatar>
                   <v-list-item-content>
-                    <v-list-item-title v-text='item.username' />
-                    <v-list-item-subtitle v-text='item.status' />
+                    <v-list-item-title v-text="item.username" />
+                    <v-list-item-subtitle v-text="item.status" />
                   </v-list-item-content>
                   <v-list-item-action>
-                    <v-list-item-action-text v-text='item.time' />
+                    <v-list-item-action-text v-text="item.time" />
                   </v-list-item-action>
                 </v-list-item>
               </v-list>
@@ -206,7 +187,6 @@
 </template>
 
 <script>
-
 import { mapGetters } from 'vuex'
 import Codemirror from '~/components/codemirror'
 import MdEditor from '~/components/md-editor'
@@ -234,8 +214,20 @@ export default {
       selectedLanguage: undefined,
       code: '',
       recentSubmissions: [
-        { id: 1, username: '用户1', email: 'zhongtian.yang@qq.com', status: 'AC', time: '五分钟前' },
-        { id: 2, username: '用户2', email: '1417269626@qq.com', status: 'WA', time: '八分钟前' }
+        {
+          id: 1,
+          username: '用户1',
+          email: 'zhongtian.yang@qq.com',
+          status: 'AC',
+          time: '五分钟前'
+        },
+        {
+          id: 2,
+          username: '用户2',
+          email: '1417269626@qq.com',
+          status: 'WA',
+          time: '八分钟前'
+        }
       ]
     }
   },
@@ -262,9 +254,12 @@ export default {
       ]
     },
     filteredSamples() {
-      return this.problem.samples && this.problem.samples.filter(v => {
-        return Boolean(v.input && v.output)
-      })
+      return (
+        this.problem.samples &&
+        this.problem.samples.filter(v => {
+          return Boolean(v.input && v.output)
+        })
+      )
     }
   },
   mounted() {
@@ -315,7 +310,7 @@ export default {
   }
 }
 </script>
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 ::v-deep .CodeMirror {
   height: 500px;
 }

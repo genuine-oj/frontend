@@ -9,9 +9,7 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -104,10 +102,7 @@ export default {
     locales: ['zh-cn', 'en'],
     defaultLocale: 'zh-cn',
     defaultTimeZone: 'Asia/Shanghai',
-    plugins: [
-      'utc',
-      'timezone'
-    ]
+    plugins: ['utc', 'timezone']
   },
 
   loading: {
@@ -121,15 +116,7 @@ export default {
         [
           'prismjs',
           {
-            languages: [
-              'c',
-              'cpp',
-              'python',
-              'java',
-              'html',
-              'css',
-              'js'
-            ]
+            languages: ['c', 'cpp', 'python', 'java', 'html', 'css', 'js']
           }
         ]
       ]

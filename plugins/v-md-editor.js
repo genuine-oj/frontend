@@ -46,7 +46,6 @@ VMdEditor.use(vuepressTheme, {
 
 Vue.component('BaseMdEditor', VMdEditor)
 
-
 export default ({ store }) => {
   const localeMapping = {
     'zh-CN': ['zh-CN', zhCN],

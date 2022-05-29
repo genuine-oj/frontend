@@ -1,25 +1,25 @@
 <template>
   <div>
-    <v-breadcrumbs :items='breadCrumbs' />
+    <v-breadcrumbs :items="breadCrumbs" />
     <v-row>
-      <v-col cols='12' md='8'>
+      <v-col cols="12" md="8">
         <v-data-table
-          :headers='headers'
-          :items='problems'
-          item-key='id'
-          :items-per-page='10'
-          :options.sync='options'
-          :server-items-length='count'
-          :loading='loading'
-          mobile-breakpoint='0'
+          :headers="headers"
+          :items="problems"
+          item-key="id"
+          :items-per-page="10"
+          :options.sync="options"
+          :server-items-length="count"
+          :loading="loading"
+          mobile-breakpoint="0"
           multi-sort
-          @click:row='showDetail'
+          @click:row="showDetail"
         >
-          <template #item.ac_rate='{ item }'>
+          <template #item.ac_rate="{ item }">
             <v-progress-linear
-              :value='item.ac_count / item.submit_count * 100'
-              color='teal lighten-2'
-              height='25'
+              :value="(item.ac_count / item.submit_count) * 100"
+              color="teal lighten-2"
+              height="25"
               striped
               rounded
             >
@@ -33,10 +33,9 @@
 </template>
 
 <script>
-
-const throttle = (function() {
+const throttle = (function () {
   let timer = 0
-  return (callback) => {
+  return callback => {
     clearTimeout(timer)
     timer = setTimeout(callback, 500)
   }
@@ -74,7 +73,12 @@ export default {
       return [
         { text: 'ID', value: 'id', width: '20%' },
         { text: this.$t('problems.title'), value: 'title', width: '50%' },
-        { text: this.$t('problems.acRate'), value: 'ac_rate', width: '30%', sortable: false }
+        {
+          text: this.$t('problems.acRate'),
+          value: 'ac_rate',
+          width: '30%',
+          sortable: false
+        }
       ]
     }
   },
@@ -107,21 +111,25 @@ export default {
         ordering.push(desc + value)
       })
       this.loading = true
-      this.$axios.get('/problem/', {
-        params: {
-          limit,
-          offset,
-          ordering: ordering.join(','),
-          search: this.search
-        }
-      }).then(res => {
-        this.count = res.count
-        this.problems = res.results
-      }).catch(err => {
-        this.$swal('题目加载失败', err, 'error')
-      }).finally(() => {
-        this.loading = false
-      })
+      this.$axios
+        .get('/problem/', {
+          params: {
+            limit,
+            offset,
+            ordering: ordering.join(','),
+            search: this.search
+          }
+        })
+        .then(res => {
+          this.count = res.count
+          this.problems = res.results
+        })
+        .catch(err => {
+          this.$swal('题目加载失败', err, 'error')
+        })
+        .finally(() => {
+          this.loading = false
+        })
     }
   }
 }

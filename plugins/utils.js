@@ -20,7 +20,6 @@ const judgeStatus = {
   SYSTEM_ERROR: 4
 }
 
-
 const judgeStatusDisplay = {
   PENDING: 'Pending',
   JUDGING: 'Judging',
@@ -38,7 +37,6 @@ const languages = {
   CPP: 'cpp'
 }
 
-
 const languagesDisplay = {
   C: 'C',
   CPP: 'C++'
@@ -55,20 +53,19 @@ const initDisplay = (obj, objDisplay) => {
 initDisplay(judgeStatus, judgeStatusDisplay)
 initDisplay(languages, languagesDisplay)
 
-const parseSize = value => { // Parse bytes to readable format
+const parseSize = value => {
+  // Parse bytes to readable format
   let size
-  if (value < 0.1 * 1024)
-    size = value.toFixed(2) + ' B'
-  else if (value < 0.1 * 1024 * 1024)
-    size = (value / 1024).toFixed(2) + ' KB'
+  if (value < 0.1 * 1024) size = value.toFixed(2) + ' B'
+  else if (value < 0.1 * 1024 * 1024) size = (value / 1024).toFixed(2) + ' KB'
   else if (value < 0.1 * 1024 * 1024 * 1024)
     size = (value / (1024 * 1024)).toFixed(2) + ' MB'
-  else
-    size = (value / (1024 * 1024 * 1024)).toFixed(2) + ' GB'
+  else size = (value / (1024 * 1024 * 1024)).toFixed(2) + ' GB'
   const sizeStr = size + ''
   const index = sizeStr.indexOf('.')
   const dou = sizeStr.substr(index + 1, 2)
-  if (dou === '00') return sizeStr.substring(0, index) + sizeStr.substr(index + 3, 2)
+  if (dou === '00')
+    return sizeStr.substring(0, index) + sizeStr.substr(index + 3, 2)
   return size
 }
 

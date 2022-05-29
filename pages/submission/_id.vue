@@ -1,8 +1,6 @@
 <template>
-  <v-row class='mt-3'>
-    <v-col cols='12'>
-
-    </v-col>
+  <v-row class="mt-3">
+    <v-col cols="12"> </v-col>
   </v-row>
 </template>
 
@@ -19,6 +17,4 @@ export default {
 }
 </script>
 
-<style lang='scss' scoped>
-
-</style>
+<style lang="scss" scoped></style>

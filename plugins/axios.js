@@ -1,5 +1,5 @@
 /* eslint-disable prefer-promise-reject-errors */
-export default function({ $axios, store, redirect, route }) {
+export default function ({ $axios, store, redirect, route }) {
   if (process.env.NODE_ENV === 'production') {
     $axios.defaults.baseURL = 'xxx.com:8000/'
   } else {
@@ -29,7 +29,8 @@ export default function({ $axios, store, redirect, route }) {
     } else if (error.response.status === 500) {
       redirect('/500')
     } else {
-      if (Object.keys(data).toString() === ['detail'].toString()) return Promise.reject(data.detail)
+      if (Object.keys(data).toString() === ['detail'].toString())
+        return Promise.reject(data.detail)
       return Promise.reject(data)
     }
   })

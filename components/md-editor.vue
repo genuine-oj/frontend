@@ -1,8 +1,8 @@
 <template>
   <base-md-editor
-    v-model='content'
-    :mode='mode'
-    left-toolbar='undo redo | h bold italic strikethrough quote | ul ol table hr | link image code'
+    v-model="content"
+    :mode="mode"
+    left-toolbar="undo redo | h bold italic strikethrough quote | ul ol table hr | link image code"
   />
 </template>
 
@@ -36,7 +36,7 @@ export default {
 }
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 ::v-deep .vuepress-markdown-body {
   padding: 0 !important;
 }

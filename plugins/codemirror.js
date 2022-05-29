@@ -24,7 +24,6 @@ import 'codemirror/theme/material-palenight.css'
 
 const { codemirror } = VueCodemirror
 
-
 const options = {
   tabSize: 4,
   styleActiveLine: true,
