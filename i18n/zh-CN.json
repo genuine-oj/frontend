@@ -34,7 +34,7 @@
     "judgeSettings": "评测配置"
   },
   "problemData": {
-    "score": "{score}分"
+    "score": "{score} 分"
   },
   "problems": {
     "title": "标题",
