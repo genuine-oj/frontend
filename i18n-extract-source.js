@@ -1,7 +1,7 @@
 const fs = require('fs')
 const glob = require('glob')
 const dir = './?(layouts|components|pages)/**/*.?(vue|js)'
-const target = './i18n/zh-CN.json'
+const target = './i18n/en-US.json'
 const pattern = /\$t\(['"](?<slug>.+?)['"].*\)/g
 const files = glob.sync(dir)
 

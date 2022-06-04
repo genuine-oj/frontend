@@ -4,15 +4,18 @@
     <v-row>
       <v-col cols="12" md="8" lg="9">
         <template v-if="!showCode">
-          <h2 class="text-h4 mb-1" v-text="problem.title" />
-          <h4 class="text-h5" v-text="$t('problem.problemDescription')" />
-          <md-editor :value="problem.description" mode="preview" />
-          <h4 class="text-h5" v-text="$t('problem.inputFormat')" />
-          <md-editor :value="problem.input_format" mode="preview" />
-          <h4 class="text-h5" v-text="$t('problem.outputFormat')" />
-          <md-editor :value="problem.output_format" mode="preview" />
-          <h4 class="text-h5" v-text="$t('problem.samples')" />
-          <v-row v-for="sample in filteredSamples" :key="sample.index">
+          <h2 class="text-h4" v-text="problem.title" />
+          <h4
+            class="text-h5 mt-1 mb-2"
+            v-text="$t('problem.problemDescription')"
+          />
+          <md-viewer :value="problem.description" />
+          <h4 class="text-h5 my-2" v-text="$t('problem.inputFormat')" />
+          <md-viewer :value="problem.input_format" />
+          <h4 class="text-h5 my-2" v-text="$t('problem.outputFormat')" />
+          <md-viewer :value="problem.output_format" />
+          <h4 class="text-h5 my-2" v-text="$t('problem.samples')" />
+          <v-row v-for="sample in filteredSamples" :key="sample.index" dense>
             <v-col cols="6">
               <h5
                 class="text-h6"
@@ -29,8 +32,8 @@
             </v-col>
           </v-row>
           <template v-if="problem.hint">
-            <h4 class="text-h5 mt-1" v-text="$t('problem.hint')" />
-            <md-editor :value="problem.hint" mode="preview" />
+            <h4 class="text-h5 my-2" v-text="$t('problem.hint')" />
+            <md-viewer :value="problem.hint" />
           </template>
         </template>
         <v-row v-else>
@@ -189,13 +192,13 @@
 <script>
 import { mapGetters } from 'vuex'
 import Codemirror from '~/components/codemirror'
-import MdEditor from '~/components/md-editor'
+import MdViewer from '~/components/md-viewer'
 
 export default {
   name: 'ProblemPage',
   components: {
     Codemirror,
-    MdEditor
+    MdViewer
   },
   validate({ params }) {
     return /^\d+$/.test(params.id)
@@ -313,10 +316,6 @@ export default {
 <style lang="scss" scoped>
 ::v-deep .CodeMirror {
   height: 500px;
-}
-
-::v-deep .github-markdown-body {
-  padding: 6px 0 0 0 !important;
 }
 
 .spaced > * {

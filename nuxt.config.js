@@ -20,7 +20,6 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/v-md-editor.js',
     '~/plugins/codemirror.js',
     '~/plugins/axios.js',
     '~/plugins/route.js',
@@ -87,20 +86,20 @@ export default {
 
   i18n: {
     locales: [
-      { name: '简体中文', code: 'zh-CN', iso: 'zh-CN', file: 'zh-CN.js' },
-      { name: 'English', code: 'en-US', iso: 'en-US', file: 'en-US.js' }
+      { name: 'English', code: 'en-US', iso: 'en-US', file: 'en-US.js' },
+      { name: '简体中文', code: 'zh-CN', iso: 'zh-CN', file: 'zh-CN.js' }
     ],
     strategy: 'no_prefix',
     langDir: '~/i18n/',
-    defaultLocale: 'zh-CN',
+    defaultLocale: 'en-US',
     vueI18n: {
-      fallbackLocale: 'zh-CN'
+      fallbackLocale: 'en-US'
     }
   },
 
   dayjs: {
-    locales: ['zh-cn', 'en'],
-    defaultLocale: 'zh-cn',
+    locales: ['en', 'zh-cn'],
+    defaultLocale: 'en',
     defaultTimeZone: 'Asia/Shanghai',
     plugins: ['utc', 'timezone']
   },
@@ -111,16 +110,6 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    babel: {
-      plugins: [
-        [
-          'prismjs',
-          {
-            languages: ['c', 'cpp', 'python', 'java', 'html', 'css', 'js']
-          }
-        ]
-      ]
-    },
     optimization: {
       splitChunks: {
         minSize: 10000,
@@ -128,6 +117,13 @@ export default {
       }
     },
     cache: true,
-    parallel: true
+    parallel: true,
+    extend(config) {
+      config.module.rules.push({
+        test: /.mjs$/,
+        include: /node_modules/,
+        type: 'javascript/auto'
+      })
+    }
   }
 }

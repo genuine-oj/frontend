@@ -1,9 +1,9 @@
 <template>
-  <Editor v-model="content" :plugins="plugins" :locale="locale" />
+  <Viewer :value="value" :plugins="plugins" />
 </template>
 
 <script>
-import { Editor } from '@bytemd/vue'
+import { Viewer } from '@bytemd/vue'
 import 'bytemd/dist/index.css'
 import breaks from '@bytemd/plugin-breaks'
 import gemoji from '@bytemd/plugin-gemoji'
@@ -21,13 +21,9 @@ const locales = {
 }
 
 export default {
-  name: 'MdEditor',
+  name: 'MdViewer',
   components: {
-    Editor
-  },
-  model: {
-    prop: 'value',
-    event: 'valueChange'
+    Viewer
   },
   props: {
     value: {
@@ -37,21 +33,10 @@ export default {
   },
   data() {
     return {
-      localeName: 'en'
+      localeName: 'zh_Hans'
     }
   },
   computed: {
-    content: {
-      get() {
-        return this.value
-      },
-      set(value) {
-        this.$emit('valueChange', value)
-      }
-    },
-    locale() {
-      return require(`bytemd/locales/${this.localeName}.json`)
-    },
     plugins() {
       return [
         breaks(),
