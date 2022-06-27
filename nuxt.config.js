@@ -20,20 +20,15 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/codemirror.js',
+    // '~/plugins/codemirror.js',
     '~/plugins/axios.js',
     '~/plugins/route.js',
-    '~/plugins/vuex.js',
     '~/plugins/dayjs.js',
     '~/plugins/utils.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
-
-  ssr: false,
-
-  target: 'static',
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
@@ -48,6 +43,7 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/auth-next',
     '@nuxtjs/proxy',
     '@nuxtjs/pwa',
     '@nuxtjs/i18n',
@@ -56,7 +52,7 @@ export default {
 
   proxy: {
     '/api': {
-      target: 'http://localhost:8000', // 目标接口域名
+      target: 'http://localhost:8000',
       pathRewrite: {
         '^/api': '',
         changeOrigin: true
@@ -82,6 +78,37 @@ export default {
     customVariables: ['~/assets/css/variables.scss'],
     optionsPath: '~/vuetify.options.js',
     defaultAssets: false
+  },
+
+  axios: {
+    host: process.env.API_HOST || 'localhost',
+    port: process.env.API_PORT || 3000,
+    prefix: process.env.API_PREFIX || '/api',
+    proxy: process.env.NODE_ENV === 'development',
+    credentials: true
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        cookie: {
+          name: 'sessionid',
+          options: {
+            maxAge: 3600 * 24 * 14
+          }
+        },
+        token: {
+          required: false,
+          type: false
+        },
+        endpoints: {
+          login: { url: '/user/login/', method: 'post' },
+          logout: { url: '/user/logout/', method: 'get' },
+          user: { url: '/user/info/', method: 'get' }
+        },
+        localStorage: false
+      }
+    }
   },
 
   i18n: {
@@ -116,8 +143,6 @@ export default {
         maxSize: 250000
       }
     },
-    cache: true,
-    parallel: true,
     extend(config) {
       config.module.rules.push({
         test: /.mjs$/,

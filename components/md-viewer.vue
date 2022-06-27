@@ -8,11 +8,11 @@ import 'bytemd/dist/index.css'
 import breaks from '@bytemd/plugin-breaks'
 import gemoji from '@bytemd/plugin-gemoji'
 import gfm from '@bytemd/plugin-gfm'
-import highlight from '@bytemd/plugin-highlight'
-import math from '@bytemd/plugin-math'
+import highlight from '@bytemd/plugin-highlight-ssr'
+import math from '@bytemd/plugin-math-ssr'
 
 import 'highlight.js/styles/github.css'
-import 'github-markdown-css'
+import 'github-markdown-css/github-markdown.css'
 import 'katex/dist/katex.css'
 
 const locales = {
@@ -33,7 +33,7 @@ export default {
   },
   data() {
     return {
-      localeName: 'zh_Hans'
+      localeName: 'en'
     }
   },
   computed: {

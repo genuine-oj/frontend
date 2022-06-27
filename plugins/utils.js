@@ -1,9 +1,8 @@
-import Vue from 'vue'
 import md5 from 'crypto-js/md5'
 
 const avatar = {
   get(email) {
-    const hash = md5(email.trim().toLowerCase())
+    const hash = md5(email ? email.trim().toLowerCase() : '')
     return `https://cravatar.cn/avatar/${hash}`
   }
 }
@@ -80,4 +79,6 @@ const utils = {
   }
 }
 
-Vue.prototype.$utils = utils
+export default ({ app }, inject) => {
+  inject('utils', utils)
+}

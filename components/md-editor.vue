@@ -1,5 +1,10 @@
 <template>
-  <Editor v-model="content" :plugins="plugins" :locale="locale" />
+  <Editor
+    :value="value"
+    :plugins="plugins"
+    :locale="locale"
+    @change="handleChange"
+  />
 </template>
 
 <script>
@@ -8,11 +13,11 @@ import 'bytemd/dist/index.css'
 import breaks from '@bytemd/plugin-breaks'
 import gemoji from '@bytemd/plugin-gemoji'
 import gfm from '@bytemd/plugin-gfm'
-import highlight from '@bytemd/plugin-highlight'
-import math from '@bytemd/plugin-math'
+import highlight from '@bytemd/plugin-highlight-ssr'
+import math from '@bytemd/plugin-math-ssr'
 
 import 'highlight.js/styles/github.css'
-import 'github-markdown-css'
+import 'github-markdown-css/github-markdown.css'
 import 'katex/dist/katex.css'
 
 const locales = {
@@ -41,14 +46,6 @@ export default {
     }
   },
   computed: {
-    content: {
-      get() {
-        return this.value
-      },
-      set(value) {
-        this.$emit('valueChange', value)
-      }
-    },
     locale() {
       return require(`bytemd/locales/${this.localeName}.json`)
     },
@@ -73,6 +70,11 @@ export default {
         this.localeName = locales[value]
       },
       immediate: true
+    }
+  },
+  methods: {
+    handleChange(value) {
+      this.$emit('valueChange', value)
     }
   }
 }

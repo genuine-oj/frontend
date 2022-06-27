@@ -10,7 +10,7 @@
   "problem": {
     "problemList": "Problem List",
     "problemDetail": "Problem Detail",
-    "problemCreate": "Create",
+    "problemCreate": "Create Problem",
     "problemEdit": "Edit",
     "problemTitle": "Problem Title",
     "problemDescription": "Problem Description",
@@ -52,5 +52,14 @@
     "memory": "Memory",
     "solution": "Solution",
     "submitTime": "Submit Time"
+  },
+  "login": {
+    "loginToOJ": "OJ Login",
+    "username": "username",
+    "password": "password",
+    "login": "Login",
+    "usernameNotSet": "Username field is empty.",
+    "passwordNotSet": "Password field is empty.",
+    "loginFailed": "Login failed"
   }
 }

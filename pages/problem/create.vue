@@ -5,48 +5,63 @@
       <v-col>
         <h4 class="text-h4" v-text="$t('problem.problemCreate')" />
       </v-col>
-    </v-row>
-    <v-row>
       <v-col cols="12">
         <v-text-field
           v-model="problem.title"
           :placeholder="$t('problem.problemTitle')"
+          :error-messages="errors.title"
           outlined
-          hide-details
+          dense
         />
       </v-col>
-    </v-row>
-    <v-row>
       <v-col cols="12">
         <v-card>
           <v-toolbar flat color="primary" dark dense>
             <v-toolbar-title v-text="$t('problem.problemDescription')" />
           </v-toolbar>
           <md-editor v-model="problem.description" />
+          <v-alert
+            v-if="errors.description"
+            dense
+            text
+            type="error"
+            class="rounded-0"
+            v-text="errors.description"
+          />
         </v-card>
       </v-col>
-    </v-row>
-    <v-row>
       <v-col cols="12">
         <v-card>
           <v-toolbar flat color="primary" dark dense>
             <v-toolbar-title v-text="$t('problem.inputFormat')" />
           </v-toolbar>
           <md-editor v-model="problem.input_format" />
+          <v-alert
+            v-if="errors.input_format"
+            dense
+            text
+            type="error"
+            class="rounded-0"
+            v-text="errors.input_format"
+          />
         </v-card>
       </v-col>
-    </v-row>
-    <v-row>
       <v-col cols="12">
         <v-card>
           <v-toolbar flat color="primary" dark dense>
             <v-toolbar-title v-text="$t('problem.outputFormat')" />
           </v-toolbar>
           <md-editor v-model="problem.output_format" />
+          <v-alert
+            v-if="errors.output_format"
+            dense
+            text
+            type="error"
+            class="rounded-0"
+            v-text="errors.output_format"
+          />
         </v-card>
       </v-col>
-    </v-row>
-    <v-row>
       <v-col cols="12">
         <v-card>
           <v-toolbar flat color="primary" dark dense>
@@ -91,14 +106,20 @@
           </v-tabs>
         </v-card>
       </v-col>
-    </v-row>
-    <v-row>
       <v-col cols="12">
         <v-card>
           <v-toolbar flat color="primary" dark dense>
             <v-toolbar-title v-text="$t('problem.hint')" />
           </v-toolbar>
           <md-editor v-model="problem.hint" />
+          <v-alert
+            v-if="errors.hint"
+            dense
+            text
+            type="error"
+            class="rounded-0"
+            v-text="errors.hint"
+          />
         </v-card>
       </v-col>
     </v-row>
@@ -123,7 +144,19 @@ export default {
   },
   data() {
     return {
-      problem: {}
+      problem: {
+        title: '',
+        description: '',
+        input_format: '',
+        output_format: '',
+        hint: '',
+        samples: [
+          { index: 1, input: '', output: '' },
+          { index: 2, input: '', output: '' },
+          { index: 3, input: '', output: '' }
+        ]
+      },
+      errors: {}
     }
   },
   computed: {
@@ -146,14 +179,15 @@ export default {
   methods: {
     saveData() {
       this.$axios
-        .post(`/problem/${this.problem.id}/`, this.problem)
+        .post(`/problem/`, this.problem)
         .then(res => {
-          this.problem = res
+          this.problem = res.data
           this.$swal(this.$t('saveSuccess'), '', 'success')
         })
         .catch(err => {
           if (typeof err === 'string')
             this.$swal(this.$t('saveFailed'), err, 'error')
+          else this.errors = err
         })
     }
   }

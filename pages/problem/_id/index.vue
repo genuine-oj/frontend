@@ -273,7 +273,8 @@ export default {
   methods: {
     async loadData() {
       await this.$store.dispatch('startLoading')
-      this.problem = await this.$axios.get(`/problem/${this.problem.id}/`)
+      const res = await this.$axios.get(`/problem/${this.problem.id}/`)
+      this.problem = res.data
       await this.$store.dispatch('stopLoading')
     },
     uploadCodeFile() {
@@ -301,6 +302,7 @@ export default {
         this.code = reader.result
         fileInput.value = ''
       }
+      // noinspection JSCheckFunctionSignatures
       reader.readAsText(file)
     },
     submitCode() {

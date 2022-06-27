@@ -3,16 +3,15 @@
     <v-col xs="12" sm="8" md="6" lg="4" xl="4">
       <v-card class="elevation-12">
         <v-toolbar dark color="primary">
-          <v-toolbar-title>登录 OJ</v-toolbar-title>
+          <v-toolbar-title v-text="$t('login.loginToOJ')" />
         </v-toolbar>
         <v-card-text>
           <v-form ref="form" v-model="valid" @keyup.enter.native="login">
             <v-text-field
               v-model="username"
               :rules="username_rules"
-              :messages="username_message"
               prepend-icon="mdi-account"
-              label="用户名"
+              :label="$t('login.username')"
               type="text"
               required
               clearable
@@ -20,9 +19,8 @@
             <v-text-field
               v-model="password"
               :rules="password_rules"
-              :messages="password_message"
               prepend-icon="mdi-lock"
-              label="密码"
+              :label="$t('login.password')"
               type="password"
               required
               clearable
@@ -39,9 +37,8 @@
                 :disabled="!valid"
                 :loading="login_loading"
                 @click="login"
-              >
-                登录
-              </v-btn>
+                v-text="$t('login.login')"
+              />
             </v-col>
           </v-row>
         </v-card-actions>
@@ -58,10 +55,8 @@ export default {
       username: '',
       password: '',
       valid: false,
-      username_rules: [value => !!value || '用户名未输入'],
-      username_message: undefined,
-      password_rules: [value => !!value || '密码未输入'],
-      password_message: undefined,
+      username_rules: [value => !!value || this.$t('login.usernameNotSet')],
+      password_rules: [value => !!value || this.$t('login.passwordNotSet')],
       login_loading: false
     }
   },
@@ -69,31 +64,16 @@ export default {
     login() {
       this.$refs.form.validate()
       if (!this.valid) return
-      const payload = {
-        username: this.username,
-        password: this.password
-      }
       this.login_loading = true
-      this.username_message = this.password_message = undefined
-      this.$axios
-        .post('/user/login/', payload)
-        .then(res => {
-          return this.$store.dispatch('login', {
-            token: res.token,
-            user: res.user
-          })
-        })
-        .then(() => {
-          const next = this.$route.query.next
-          if (next) this.$router.replace(String(next))
-          else this.$router.replace('/')
+      this.$auth
+        .login({
+          data: {
+            username: this.username,
+            password: this.password
+          }
         })
         .catch(err => {
-          if (typeof err === 'string') this.$swal('登录失败', err, 'error')
-          else {
-            this.username_message = err.username
-            this.password_message = err.password
-          }
+          this.$swal(this.$t('login.loginFailed'), err, 'error')
         })
         .finally(() => {
           this.login_loading = false

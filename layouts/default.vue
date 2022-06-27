@@ -38,7 +38,7 @@
       <v-menu transition="slide-y-transition" offset-y open-on-hover bottom>
         <template #activator="{ on, attrs }">
           <v-btn v-bind="attrs" icon v-on="on">
-            <v-icon> mdi-translate </v-icon>
+            <v-icon> mdi-translate</v-icon>
           </v-btn>
         </template>
         <v-list nav dense>
@@ -51,8 +51,14 @@
           </v-list-item>
         </v-list>
       </v-menu>
-      <v-btn v-if="!isAuthenticated" to="/user/login" exact icon title="登录">
-        <v-icon> mdi-login-variant </v-icon>
+      <v-btn
+        v-if="!isAuthenticated"
+        to="/user/login"
+        exact
+        icon
+        :title="$t('login.login')"
+      >
+        <v-icon> mdi-login-variant</v-icon>
       </v-btn>
       <v-menu
         v-else
@@ -64,10 +70,10 @@
         <template #activator="{ on, attrs }">
           <v-btn v-bind="attrs" text v-on="on">
             <v-avatar class="mr-1" size="28" left>
-              <v-img :src="$utils.misc.avatar.get(user.email)" />
+              <v-img :src="$utils.misc.avatar.get($auth.user.email)" />
             </v-avatar>
-            {{ user.username }}
-            <v-icon right> mdi-chevron-down </v-icon>
+            {{ $auth.user.username }}
+            <v-icon right> mdi-chevron-down</v-icon>
           </v-btn>
         </template>
         <v-list>
@@ -135,7 +141,7 @@ export default {
       ]
     },
     ...mapGetters(['isAuthenticated']),
-    ...mapState(['user', 'loading'])
+    ...mapState(['loading'])
   },
   watch: {
     '$i18n.locale': {
@@ -146,10 +152,8 @@ export default {
     }
   },
   methods: {
-    logout() {
-      this.$store.dispatch('logout').then(() => {
-        location.reload()
-      })
+    async logout() {
+      await this.$auth.logout()
     }
   }
 }

@@ -93,8 +93,8 @@ export default {
           }
         })
         .then(res => {
-          this.count = res.count
-          this.submissionsData = res.results
+          this.count = res.data.count
+          this.submissionsData = res.data.results
         })
         .catch(err => {
           this.$swal('提交记录加载失败', err, 'error')

@@ -2,7 +2,7 @@
   <div>
     <v-breadcrumbs :items="breadCrumbs" />
     <v-row>
-      <v-col cols="12" md="8">
+      <v-col cols="12" md="9">
         <v-data-table
           :headers="headers"
           :items="problems"
@@ -27,6 +27,14 @@
             </v-progress-linear>
           </template>
         </v-data-table>
+      </v-col>
+      <v-col cols="12" md="3">
+        <v-btn
+          color="primary"
+          block
+          to="/problem/create"
+          v-text="$t('problem.problemCreate')"
+        />
       </v-col>
     </v-row>
   </div>
@@ -121,8 +129,8 @@ export default {
           }
         })
         .then(res => {
-          this.count = res.count
-          this.problems = res.results
+          this.count = res.data.count
+          this.problems = res.data.results
         })
         .catch(err => {
           this.$swal('题目加载失败', err, 'error')

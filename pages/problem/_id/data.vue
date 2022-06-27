@@ -18,10 +18,10 @@
                 <v-col class="py-0">
                   <v-radio-group v-model="data.use_subcheck" row dense>
                     <v-radio :value="false">
-                      <template #label> 标准运行 </template>
+                      <template #label> 标准运行</template>
                     </v-radio>
                     <v-radio :value="true">
-                      <template #label> 子评测 </template>
+                      <template #label> 子评测</template>
                     </v-radio>
                   </v-radio-group>
                 </v-col>
@@ -31,10 +31,10 @@
                 <v-col class="py-0">
                   <v-radio-group v-model="data.use_spj" row dense>
                     <v-radio :value="false">
-                      <template #label> 标准比较 </template>
+                      <template #label> 标准比较</template>
                     </v-radio>
                     <v-radio :value="true">
-                      <template #label> 特殊裁决 </template>
+                      <template #label> 特殊裁决</template>
                     </v-radio>
                   </v-radio-group>
                 </v-col>
@@ -108,7 +108,7 @@
                                 <template v-if="scoreEditing !== item.name">
                                   mdi-pencil
                                 </template>
-                                <template v-else> mdi-check-bold </template>
+                                <template v-else> mdi-check-bold</template>
                               </v-icon>
                             </v-btn>
                             <v-menu offset-y open-on-hover>
@@ -191,7 +191,7 @@
           :disabled="currentTotalScore !== 100"
           @click="saveData"
         >
-          <v-icon left> mdi-content-save-all </v-icon>
+          <v-icon left> mdi-content-save-all</v-icon>
           {{ $t('save') }}
         </v-btn>
       </v-col>
@@ -258,7 +258,8 @@ export default {
   methods: {
     async loadData() {
       await this.$store.dispatch('startLoading')
-      this.data = await this.$axios.get(`/problem/${this.problem_id}/data/`)
+      const res = await this.$axios.get(`/problem/${this.problem_id}/data/`)
+      this.data = res.data
       await this.$store.dispatch('stopLoading')
     },
     async loadZip(file) {
@@ -320,7 +321,7 @@ export default {
           formData.append(key, JSON.stringify(value))
         else formData.append(key, value)
       })
-      formData.append('test_cases', this.cleanedZipBlob ?? new Blob())
+      formData.append('test_cases', this.cleanedZipBlob)
       formData.append('spj_source', null)
       formData.append('delete_cases', JSON.stringify(this.deleteCases))
       this.$axios
@@ -328,7 +329,7 @@ export default {
           headers: { 'Content-Type': 'multipart/form-data' }
         })
         .then(res => {
-          this.data = res
+          this.data = res.data
           this.newCases = []
           this.deleteCases = []
           this.$swal(this.$t('saveSuccess'), '', 'success')
@@ -342,13 +343,14 @@ export default {
       item.score = parseInt(value)
     },
     async fetchCaseFile(fileName) {
-      return await this.$axios.get(`/problem/${this.problem_id}/data/`, {
+      const res = await this.$axios.get(`/problem/${this.problem_id}/data/`, {
         params: {
           mode: 'fetch',
           file: fileName
         },
         responseType: 'blob'
       })
+      return res.data
     },
     async viewCase(item, type) {
       const file = await this.fetchCaseFile(`${item.name}.${type}`)
@@ -358,7 +360,7 @@ export default {
         display.document.title = 'Data View'
         display.document.write(String(reader.result))
       }
-      reader.readAsText(file)
+      reader.readAsText(file.data)
     },
     downloadCase(item, type) {
       this.$axios.get(`/problem/${this.problem_id}/data/`, {
