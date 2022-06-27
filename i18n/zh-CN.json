@@ -10,7 +10,7 @@
   "problem": {
     "problemList": "题目列表",
     "problemDetail": "题目详情",
-    "problemCreate": "创建题目",
+    "problemCreate": "Create Problem",
     "problemEdit": "编辑题目",
     "problemTitle": "题目标题",
     "problemDescription": "题目描述",
@@ -52,5 +52,14 @@
     "memory": "内存",
     "solution": "解答",
     "submitTime": "提交时间"
+  },
+  "login": {
+    "loginToOJ": "OJ Login",
+    "username": "username",
+    "password": "password",
+    "login": "Login",
+    "usernameNotSet": "Username field is empty.",
+    "passwordNotSet": "Password field is empty.",
+    "loginFailed": "Login failed"
   }
 }
