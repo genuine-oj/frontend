@@ -52,5 +52,14 @@
     "memory": "内存",
     "solution": "解答",
     "submitTime": "提交时间"
+  },
+  "login": {
+    "loginToOJ": "登录 OJ",
+    "username": "用户名",
+    "password": "密码",
+    "login": "登录",
+    "usernameNotSet": "用户名不能为空。",
+    "passwordNotSet": "密码不能为空。",
+    "loginFailed": "登录失败"
   }
 }
