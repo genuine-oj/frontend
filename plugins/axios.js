@@ -1,7 +1,4 @@
 export default function ({ $axios, redirect }) {
-  $axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN'
-  $axios.defaults.xsrfCookieName = 'csrftoken'
-
   $axios.debug = process.env.NODE_ENV === 'production'
 
   $axios.onResponseError(error => {
