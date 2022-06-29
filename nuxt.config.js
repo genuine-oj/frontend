@@ -81,8 +81,6 @@ export default {
   },
 
   axios: {
-    host: process.env.API_HOST || 'localhost',
-    port: process.env.API_PORT || 3000,
     prefix: process.env.API_PREFIX || '/api',
     proxy: process.env.NODE_ENV === 'development',
     credentials: true
