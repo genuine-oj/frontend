@@ -29,12 +29,16 @@
         </v-data-table>
       </v-col>
       <v-col cols="12" md="3">
-        <v-btn
-          color="primary"
-          block
-          to="/problem/create"
-          v-text="$t('problem.problemCreate')"
-        />
+        <v-row class="mx-3 spaced" dense>
+          <v-col>
+            <v-btn
+              color="primary"
+              block
+              to="/problem/create"
+              v-text="$t('problem.problemCreate')"
+            />
+          </v-col>
+        </v-row>
       </v-col>
     </v-row>
   </div>

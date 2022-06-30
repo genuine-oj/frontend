@@ -84,4 +84,7 @@ export default {
 ::v-deep code {
   background-color: transparent !important;
 }
+::v-deep .bytemd-toolbar-right [bytemd-tippy-path='5'] {
+  display: none;
+}
 </style>

@@ -14,7 +14,7 @@
           dense
         />
       </v-col>
-      <v-col cols="12">
+      <v-col cols="12" class="pt-0">
         <v-card>
           <v-toolbar flat color="primary" dark dense>
             <v-toolbar-title v-text="$t('problem.problemDescription')" />
@@ -204,8 +204,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-md-editor {
-  height: 350px;
+::v-deep .bytemd {
+  height: 450px;
 }
 
 .mono-space {
