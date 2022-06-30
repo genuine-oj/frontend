@@ -36,7 +36,7 @@
             <md-viewer :value="problem.hint" />
           </template>
         </template>
-        <div v-else :class="$vuetify.breakpoint.mdAndUp ?  'mr-5' : ''">
+        <div v-else :class="$vuetify.breakpoint.mdAndUp ? 'mr-5' : ''">
           <v-row>
             <v-col cols="7" md="5">
               <v-select
