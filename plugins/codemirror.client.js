@@ -20,9 +20,8 @@ import 'codemirror/addon/search/search'
 import 'codemirror/keymap/sublime'
 
 import 'codemirror/lib/codemirror.css'
-import 'codemirror/theme/material-palenight.css'
 
-const { codemirror } = VueCodemirror
+const { codemirror: codemirrorClient } = VueCodemirror
 
 const options = {
   tabSize: 4,
@@ -30,11 +29,10 @@ const options = {
   lineNumbers: true,
   line: true,
   keyMap: 'sublime',
-  theme: 'material-palenight',
   lineWrapping: true,
   scrollbarStyle: 'overlay'
 }
 
-codemirror.props.globalOptions.default = () => options
+codemirrorClient.props.globalOptions.default = () => options
 
-Vue.component('BaseCodemirror', codemirror)
+Vue.component('BaseCodemirror', codemirrorClient)

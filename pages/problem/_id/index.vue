@@ -36,47 +36,51 @@
             <md-viewer :value="problem.hint" />
           </template>
         </template>
-        <v-row v-else>
-          <v-col cols="7" md="auto">
-            <v-select
-              v-model="selectedLanguage"
-              :items="languages"
-              item-text="name"
-              item-value="slug"
-              :label="$t('problem.selectLanguage')"
-              return-object
-              dense
-              outlined
-              hide-details
-            ></v-select>
-          </v-col>
-          <v-col v-if="$vuetify.breakpoint.mdAndUp" md="auto">
-            <v-btn color="primary" block @click="uploadCodeFile">
-              <v-icon left> mdi-file</v-icon>
-              {{ $t('problem.loadCodeFile') }}
-            </v-btn>
-            <input
-              ref="codeFileInput"
-              type="file"
-              class="d-none"
-              :accept="`.${selectedLanguage.ext}`"
-              @change="readCodeFile"
-            />
-          </v-col>
-          <v-col cols="5" md="auto">
-            <v-btn color="success" block @click="submitCode">
-              <v-icon left> mdi-upload</v-icon>
-              {{ $t('problem.submitCode') }}
-            </v-btn>
-          </v-col>
-          <v-col cols="12">
-            <codemirror
-              ref="codemirror"
-              v-model="code"
-              :mime="selectedLanguage.mime"
-            />
-          </v-col>
-        </v-row>
+        <div v-else :class="$vuetify.breakpoint.mdAndUp ?  'mr-5' : ''">
+          <v-row>
+            <v-col cols="7" md="5">
+              <v-select
+                v-model="selectedLanguage"
+                :items="languages"
+                item-text="name"
+                item-value="slug"
+                :label="$t('problem.selectLanguage')"
+                return-object
+                dense
+                outlined
+                hide-details
+              ></v-select>
+            </v-col>
+            <v-col cols="auto" md="auto" class="d-none d-md-block d-lg-block">
+              <v-btn color="primary" block @click="uploadCodeFile">
+                <v-icon left> mdi-file</v-icon>
+                {{ $t('problem.loadCodeFile') }}
+              </v-btn>
+              <input
+                ref="codeFileInput"
+                type="file"
+                class="d-none"
+                :accept="`.${selectedLanguage.ext}`"
+                @change="readCodeFile"
+              />
+            </v-col>
+            <v-col cols="5" md="auto">
+              <v-btn color="success" block @click="submitCode">
+                <v-icon left> mdi-upload</v-icon>
+                {{ $t('problem.submitCode') }}
+              </v-btn>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col class="elevation-2 rounded">
+              <codemirror
+                ref="codemirror"
+                v-model="code"
+                :mime="selectedLanguage.mime"
+              />
+            </v-col>
+          </v-row>
+        </div>
       </v-col>
       <v-col cols="12" md="4" lg="3" class="text-center">
         <v-row class="mx-3 spaced" dense>

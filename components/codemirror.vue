@@ -1,5 +1,7 @@
 <template>
-  <base-codemirror v-model="code" :options="codemirrorOptions" />
+  <client-only placeholder="Loading...">
+    <base-codemirror v-model="code" :options="codemirrorOptions" />
+  </client-only>
 </template>
 
 <script>
