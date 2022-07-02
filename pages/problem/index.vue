@@ -13,8 +13,56 @@
           :loading="loading"
           mobile-breakpoint="0"
           multi-sort
-          @click:row="showDetail"
         >
+          <template #header.difficulty="{ header }">
+            {{ header.text }}
+            <v-tooltip bottom>
+              <template #activator="{ on, attrs }">
+                <v-btn
+                  icon
+                  x-small
+                  v-bind="attrs"
+                  v-on="on"
+                  @click="switchHeader"
+                >
+                  <v-icon> mdi-swap-horizontal </v-icon>
+                </v-btn>
+              </template>
+              <span v-text="$t('problems.showTags')" />
+            </v-tooltip>
+          </template>
+          <template #header.tags="{ header }">
+            {{ header.text }}
+            <v-tooltip bottom>
+              <template #activator="{ on, attrs }">
+                <v-btn
+                  icon
+                  x-small
+                  v-bind="attrs"
+                  v-on="on"
+                  @click="switchHeader"
+                >
+                  <v-icon> mdi-swap-horizontal </v-icon>
+                </v-btn>
+              </template>
+              <span v-text="$t('problems.showDifficulty')" />
+            </v-tooltip>
+          </template>
+          <template #item.title="{ item }">
+            <a @click="showDetail(item)">{{ item.title }}</a>
+          </template>
+          <template #item.difficulty="{ item }">
+            {{ difficultyMap[item.difficulty] }}
+          </template>
+          <template #item.tags="{ item }">
+            <v-chip
+              v-for="(tag, index) in item.tags"
+              :key="index"
+              class="ma-1"
+              small
+              v-text="tag"
+            />
+          </template>
           <template #item.ac_rate="{ item }">
             <v-progress-linear
               :value="(item.ac_count / item.submit_count) * 100"
@@ -29,14 +77,34 @@
         </v-data-table>
       </v-col>
       <v-col cols="12" md="3">
-        <v-row class="mx-3 spaced" dense>
-          <v-col>
-            <v-btn
-              color="primary"
-              block
-              to="/problem/create"
-              v-text="$t('problem.problemCreate')"
+        <v-row class="mx-3">
+          <v-col cols="12">
+            <v-text-field
+              v-model="search"
+              solo
+              dense
+              :label="$t('problems.problemSearch')"
+              append-icon="mdi-magnify"
+              hide-details
+              @click:append="loadData"
             />
+          </v-col>
+          <v-col cols="12">
+            <v-select
+              v-model="difficultySelect"
+              solo
+              dense
+              :items="difficulties"
+              item-text="text"
+              item-value="value"
+              :label="$t('problems.problemDifficulty')"
+              hide-details
+            />
+          </v-col>
+          <v-col cols="12">
+            <v-btn color="primary" block exact to="/problem/create">
+              {{ $t('problem.problemCreate') }}
+            </v-btn>
           </v-col>
         </v-row>
       </v-col>
@@ -45,14 +113,6 @@
 </template>
 
 <script>
-const throttle = (function () {
-  let timer = 0
-  return callback => {
-    clearTimeout(timer)
-    timer = setTimeout(callback, 500)
-  }
-})()
-
 export default {
   name: 'ProblemIndexPage',
   data() {
@@ -61,7 +121,9 @@ export default {
       loading: false,
       count: 0,
       search: '',
-      options: {}
+      options: {},
+      switch: false,
+      difficultySelect: -1
     }
   },
   meta: {
@@ -83,15 +145,58 @@ export default {
     },
     headers() {
       return [
-        { text: 'ID', value: 'id', width: '20%' },
-        { text: this.$t('problems.title'), value: 'title', width: '50%' },
+        {
+          text: 'ID',
+          width: '8%',
+          value: 'id'
+        },
+        {
+          text: this.$t('problems.title'),
+          value: 'title'
+        },
+        {
+          text: this.$t('problems.difficulty'),
+          value: 'difficulty',
+          width: '14%',
+          switch: false,
+          sortable: false
+        },
+        {
+          text: this.$t('problems.tags'),
+          value: 'tags',
+          width: '18%',
+          switch: true,
+          sortable: false
+        },
         {
           text: this.$t('problems.acRate'),
           value: 'ac_rate',
-          width: '30%',
+          width: '20%',
           sortable: false
         }
+      ].filter(
+        value => value.switch === undefined || value.switch === this.switch
+      )
+    },
+    difficulties() {
+      return [
+        { text: this.$t('difficulties.ALL'), value: -1 },
+        { text: this.$t('difficulties.NOT_ASSIGNED'), value: 0 },
+        { text: this.$t('difficulties.PRIMARY'), value: 1 },
+        { text: this.$t('difficulties.CSPJ-'), value: 2 },
+        { text: this.$t('difficulties.CSPJ_CSPS-'), value: 3 },
+        { text: this.$t('difficulties.CSPJ+_CSPS'), value: 4 },
+        { text: this.$t('difficulties.CSPS+_PS-'), value: 5 },
+        { text: this.$t('difficulties.PS_NOI-'), value: 6 },
+        { text: this.$t('difficulties.NOI_NOI+_CTSC'), value: 7 }
       ]
+    },
+    difficultyMap() {
+      const map = {}
+      this.difficulties.forEach(e => {
+        map[e.value] = e.text
+      })
+      return map
     }
   },
   watch: {
@@ -101,8 +206,8 @@ export default {
       },
       deep: true
     },
-    search() {
-      throttle(this.loadData)
+    difficultySelect() {
+      this.loadData()
     }
   },
   mounted() {
@@ -128,6 +233,8 @@ export default {
           params: {
             limit,
             offset,
+            difficulty:
+              this.difficultySelect !== -1 ? this.difficultySelect : '',
             ordering: ordering.join(','),
             search: this.search
           }
@@ -142,6 +249,9 @@ export default {
         .finally(() => {
           this.loading = false
         })
+    },
+    switchHeader() {
+      this.switch = !this.switch
     }
   }
 }

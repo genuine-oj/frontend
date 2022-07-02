@@ -38,7 +38,14 @@
   },
   "problems": {
     "title": "Title",
-    "acRate": "AC Rate"
+    "difficulty": "Difficulty",
+    "tags": "Tags",
+    "acRate": "AC Rate",
+    "problemSearch": "Search",
+    "status": "Status",
+    "problemDifficulty": "Difficulty",
+    "showTags": "Show tags",
+    "showDifficulty": "Show difficulty"
   },
   "save": "Save",
   "saveFailed": "Save Failed",
@@ -61,5 +68,16 @@
     "usernameNotSet": "Username field is empty.",
     "passwordNotSet": "Password field is empty.",
     "loginFailed": "Login failed"
+  },
+  "difficulties": {
+    "ALL": "All",
+    "NOT_ASSIGNED": "None",
+    "PRIMARY": "Primary",
+    "CSPJ-": "CSPJ",
+    "CSPJ_CSPS-": "CSPJ/CSPS-",
+    "CSPJ+_CSPS": "CSPJ+/CSPS",
+    "CSPS+_PS-": "CSPS+/PS-",
+    "PS_NOI-": "PS/NOI-",
+    "NOI_NOI+_CTSC": "NOI/NOI+/CTSC"
   }
 }

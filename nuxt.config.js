@@ -23,6 +23,7 @@ export default {
     '~/plugins/codemirror.client.js',
     '~/plugins/axios.js',
     '~/plugins/route.js',
+    '~/plugins/vuex-persist.js',
     '~/plugins/dayjs.js',
     '~/plugins/utils.js'
   ],
@@ -43,11 +44,11 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/auth-next',
     '@nuxtjs/proxy',
     '@nuxtjs/pwa',
     '@nuxtjs/i18n',
-    'vue-sweetalert2/nuxt/no-css'
+    'vue-sweetalert2/nuxt/no-css',
+    'cookie-universal-nuxt'
   ],
 
   proxy: {
@@ -84,29 +85,6 @@ export default {
     prefix: process.env.API_PREFIX || '/api',
     proxy: process.env.NODE_ENV === 'development',
     credentials: true
-  },
-
-  auth: {
-    strategies: {
-      local: {
-        cookie: {
-          name: 'sessionid',
-          options: {
-            maxAge: 3600 * 24 * 14
-          }
-        },
-        token: {
-          required: false,
-          type: false
-        },
-        endpoints: {
-          login: { url: '/user/login/', method: 'post' },
-          logout: { url: '/user/logout/', method: 'get' },
-          user: { url: '/user/info/', method: 'get' }
-        },
-        localStorage: false
-      }
-    }
   },
 
   i18n: {

@@ -1,35 +1,22 @@
 export const state = () => ({
+  user: undefined,
   locale: 'zh-CN',
   loading: false
 })
 
-/**
- * Getters
- * @type {{isAuthenticated(Object): Boolean, isAdmin(Object): Boolean}}
- */
 export const getters = {
   isAuthenticated(state) {
-    return state.auth.loggedIn
+    return !!state.user
   },
-  /**
-   * IsAdmin
-   * @param state
-   * @param {Object} state.auth
-   * @param {Object} state.auth.user
-   * @param {Boolean} state.auth.user.is_staff
-   * @returns {boolean}
-   */
-  isAdmin(state) {
-    return Boolean(state.auth.loggedIn && Boolean(state.auth.user.is_staff))
+  isAdmin(state, getters) {
+    return Boolean(getters.isAuthenticated && Boolean(state.user.is_staff))
   }
 }
 
-// noinspection JSUnusedGlobalSymbols
-/**
- * Mutations
- * @type {{updateLoading(Object, Boolean): void, updateLocale(Object, String): void}}
- */
 export const mutations = {
+  updateUser(state, user) {
+    state.user = user
+  },
   updateLocale(state, locale) {
     state.locale = locale
   },
@@ -38,10 +25,6 @@ export const mutations = {
   }
 }
 
-/**
- * Actions
- * @type {{stopLoading({commit: Function}): void, startLoading({commit: Function}): void}}
- */
 export const actions = {
   startLoading({ commit }) {
     commit('updateLoading', true)

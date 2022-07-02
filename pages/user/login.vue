@@ -15,7 +15,7 @@
               type="text"
               required
               clearable
-            ></v-text-field>
+            />
             <v-text-field
               v-model="password"
               :rules="password_rules"
@@ -24,7 +24,7 @@
               type="password"
               required
               clearable
-            ></v-text-field>
+            />
           </v-form>
         </v-card-text>
         <v-card-actions>
@@ -37,8 +37,9 @@
                 :disabled="!valid"
                 :loading="login_loading"
                 @click="login"
-                v-text="$t('login.login')"
-              />
+              >
+                {{ $t('login.login') }}
+              </v-btn>
             </v-col>
           </v-row>
         </v-card-actions>
@@ -65,12 +66,13 @@ export default {
       this.$refs.form.validate()
       if (!this.valid) return
       this.login_loading = true
-      this.$auth
-        .login({
-          data: {
-            username: this.username,
-            password: this.password
-          }
+      this.$axios
+        .post('/user/login/', {
+          username: this.username,
+          password: this.password
+        })
+        .then(res => {
+          this.$store.commit('updateUser', res.data)
         })
         .catch(err => {
           this.$swal(this.$t('login.loginFailed'), err, 'error')

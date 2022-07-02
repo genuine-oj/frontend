@@ -53,10 +53,9 @@
       </v-menu>
       <v-btn
         v-if="!isAuthenticated"
-        to="/user/login"
-        exact
-        icon
         :title="$t('login.login')"
+        icon
+        @click="$router.push('/user/login')"
       >
         <v-icon> mdi-login-variant</v-icon>
       </v-btn>
@@ -70,9 +69,9 @@
         <template #activator="{ on, attrs }">
           <v-btn v-bind="attrs" text v-on="on">
             <v-avatar class="mr-1" size="28" left>
-              <v-img :src="$utils.misc.avatar.get($auth.user.email)" />
+              <v-img :src="$utils.misc.avatar.get(user.email)" />
             </v-avatar>
-            {{ $auth.user.username }}
+            {{ user.username }}
             <v-icon right> mdi-chevron-down</v-icon>
           </v-btn>
         </template>
@@ -141,7 +140,7 @@ export default {
       ]
     },
     ...mapGetters(['isAuthenticated']),
-    ...mapState(['loading'])
+    ...mapState(['user', 'loading'])
   },
   watch: {
     '$i18n.locale': {
@@ -153,7 +152,8 @@ export default {
   },
   methods: {
     async logout() {
-      await this.$auth.logout()
+      await this.$axios.get('/user/logout/')
+      this.$store.commit('updateUser', undefined)
     }
   }
 }
