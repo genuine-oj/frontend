@@ -38,7 +38,14 @@
   },
   "problems": {
     "title": "标题",
-    "acRate": "AC 率"
+    "difficulty": "Difficulty",
+    "tags": "Tags",
+    "acRate": "AC 率",
+    "problemSearch": "Search",
+    "status": "Status",
+    "problemDifficulty": "Difficulty",
+    "showTags": "Show tags",
+    "showDifficulty": "Show difficulty"
   },
   "save": "保存",
   "saveFailed": "保存失败",
@@ -61,5 +68,16 @@
     "usernameNotSet": "用户名不能为空。",
     "passwordNotSet": "密码不能为空。",
     "loginFailed": "登录失败"
+  },
+  "difficulties": {
+    "ALL": "All",
+    "NOT_ASSIGNED": "None",
+    "PRIMARY": "Primary",
+    "CSPJ-": "CSPJ",
+    "CSPJ_CSPS-": "CSPJ/CSPS-",
+    "CSPJ+_CSPS": "CSPJ+/CSPS",
+    "CSPS+_PS-": "CSPS+/PS-",
+    "PS_NOI-": "PS/NOI-",
+    "NOI_NOI+_CTSC": "NOI/NOI+/CTSC"
   }
 }
