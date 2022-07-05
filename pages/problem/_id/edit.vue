@@ -1,154 +1,44 @@
 <template>
   <div>
     <v-breadcrumbs :items="breadCrumbs" />
-    <v-row>
-      <v-col>
-        <h4 class="text-h4" v-text="$t('problem.problemEdit')" />
-      </v-col>
-      <v-col cols="12">
-        <v-text-field
-          v-model="problem.title"
-          :placeholder="$t('problem.problemTitle')"
-          :error-messages="errors.title"
-          outlined
-          dense
-        />
-      </v-col>
-      <v-col cols="12" class="pt-0">
-        <v-card>
-          <v-toolbar flat color="primary" dark dense>
-            <v-toolbar-title v-text="$t('problem.problemDescription')" />
-          </v-toolbar>
-          <md-editor v-model="problem.description" />
-          <v-alert
-            v-if="errors.description"
-            dense
-            text
-            type="error"
-            class="rounded-0"
-            v-text="errors.description"
-          />
-        </v-card>
-      </v-col>
-      <v-col cols="12">
-        <v-card>
-          <v-toolbar flat color="primary" dark dense>
-            <v-toolbar-title v-text="$t('problem.inputFormat')" />
-          </v-toolbar>
-          <md-editor v-model="problem.input_format" />
-          <v-alert
-            v-if="errors.input_format"
-            dense
-            text
-            type="error"
-            class="rounded-0"
-            v-text="errors.input_format"
-          />
-        </v-card>
-      </v-col>
-      <v-col cols="12">
-        <v-card>
-          <v-toolbar flat color="primary" dark dense>
-            <v-toolbar-title v-text="$t('problem.outputFormat')" />
-          </v-toolbar>
-          <md-editor v-model="problem.output_format" />
-          <v-alert
-            v-if="errors.output_format"
-            dense
-            text
-            type="error"
-            class="rounded-0"
-            v-text="errors.output_format"
-          />
-        </v-card>
-      </v-col>
-      <v-col cols="12">
-        <v-card>
-          <v-toolbar flat color="primary" dark dense>
-            <v-toolbar-title v-text="$t('problem.samples')" />
-          </v-toolbar>
-          <v-tabs vertical>
-            <v-tab
-              v-for="sample in problem.samples"
-              :key="sample.index"
-              v-text="`#${sample.index}`"
-            />
-            <v-tab-item v-for="sample in problem.samples" :key="sample.index">
-              <v-card flat>
-                <v-card-text>
-                  <v-row>
-                    <v-col cols="12" md="6">
-                      <h6
-                        class="text-h6"
-                        v-text="$t('problem.input', { id: sample.index })"
-                      />
-                      <v-textarea
-                        v-model="sample.input"
-                        class="mono-space"
-                        outlined
-                      />
-                    </v-col>
-                    <v-col cols="12" md="6">
-                      <h6
-                        class="text-h6"
-                        v-text="$t('problem.output', { id: sample.index })"
-                      />
-                      <v-textarea
-                        v-model="sample.output"
-                        class="mono-space"
-                        outlined
-                      />
-                    </v-col>
-                  </v-row>
-                </v-card-text>
-              </v-card>
-            </v-tab-item>
-          </v-tabs>
-        </v-card>
-      </v-col>
-      <v-col cols="12">
-        <v-card>
-          <v-toolbar flat color="primary" dark dense>
-            <v-toolbar-title v-text="$t('problem.hint')" />
-          </v-toolbar>
-          <md-editor v-model="problem.hint" />
-          <v-alert
-            v-if="errors.hint"
-            dense
-            text
-            type="error"
-            class="rounded-0"
-            v-text="errors.hint"
-          />
-        </v-card>
-      </v-col>
-    </v-row>
-    <v-row class="justify-center">
-      <v-col cols="4" md="2">
-        <v-btn color="primary" block @click="saveData">
-          <v-icon left> mdi-content-save-all</v-icon>
-          {{ $t('save') }}
-        </v-btn>
-      </v-col>
-    </v-row>
+    <v-tabs v-model="tab" centered>
+      <v-tab>
+        <v-icon left> mdi-pencil</v-icon>
+        {{ $t('problem.problemEdit') }}
+      </v-tab>
+      <v-tab>
+        <v-icon left> mdi-database-cog</v-icon>
+        {{ $t('problem.problemJudgeSettings') }}
+      </v-tab>
+    </v-tabs>
+    <v-tabs-items v-model="tab" class="mt-3">
+      <v-tab-item>
+        <detail-edit />
+      </v-tab-item>
+      <v-tab-item>
+        <data-edit />
+      </v-tab-item>
+    </v-tabs-items>
   </div>
 </template>
 
 <script>
-import MdEditor from '~/components/md-editor'
+import DetailEdit from './detail-edit'
+import DataEdit from './data-edit'
 
 export default {
   name: 'ProblemEditPage',
   components: {
-    MdEditor
+    DetailEdit,
+    DataEdit
   },
   validate({ params }) {
     return /^\d+$/.test(params.id)
   },
   data() {
     return {
-      problem: {},
-      errors: {}
+      tab: 0,
+      problem_id: undefined
     }
   },
   computed: {
@@ -164,7 +54,7 @@ export default {
         {
           text: this.$t('problem.problemDetail'),
           disabled: false,
-          to: `/problem/${this.problem.id}`,
+          to: `/problem/${this.problem_id}`,
           nuxt: true,
           exact: true
         },
@@ -176,30 +66,9 @@ export default {
     }
   },
   mounted() {
-    this.problem = { id: this.$route.params.id }
-    this.loadData()
+    this.problem_id = this.$route.params.id
   },
-  methods: {
-    async loadData() {
-      await this.$store.dispatch('startLoading')
-      const res = await this.$axios.get(`/problem/${this.problem.id}/`)
-      this.problem = res.data
-      await this.$store.dispatch('stopLoading')
-    },
-    saveData() {
-      this.$axios
-        .put(`/problem/${this.problem.id}/`, this.problem)
-        .then(res => {
-          this.problem = res.data
-          this.$swal(this.$t('saveSuccess'), '', 'success')
-        })
-        .catch(err => {
-          if (typeof err === 'string')
-            this.$swal(this.$t('saveFailed'), err, 'error')
-          else this.errors = err
-        })
-    }
-  }
+  methods: {}
 }
 </script>
 
