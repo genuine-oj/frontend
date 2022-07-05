@@ -38,7 +38,9 @@ export default {
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
     // https://github.com/nuxt-community/dayjs-module
-    '@nuxtjs/dayjs'
+    '@nuxtjs/dayjs',
+    // https://github.com/harlan-zw/nuxt-webpack-optimisations
+    'nuxt-webpack-optimisations'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

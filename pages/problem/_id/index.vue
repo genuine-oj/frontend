@@ -95,7 +95,7 @@
             </v-btn>
           </v-col>
           <template v-if="!showCode && isAdmin">
-            <v-col cols="6">
+            <v-col cols="12">
               <v-btn
                 color="indigo"
                 :to="`/problem/${problem.id}/edit`"
@@ -105,18 +105,6 @@
               >
                 <v-icon left> mdi-pencil</v-icon>
                 {{ $t('problem.problemEdit') }}
-              </v-btn>
-            </v-col>
-            <v-col cols="6">
-              <v-btn
-                color="blue-grey"
-                :to="`/problem/${problem.id}/data`"
-                exact
-                dark
-                block
-              >
-                <v-icon left> mdi-database-cog</v-icon>
-                {{ $t('problem.judgeSettings') }}
               </v-btn>
             </v-col>
           </template>

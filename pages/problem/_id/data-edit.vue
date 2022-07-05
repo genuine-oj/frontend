@@ -1,11 +1,5 @@
 <template>
   <div>
-    <v-breadcrumbs :items="breadCrumbs" />
-    <v-row>
-      <v-col cols="12">
-        <h4 class="text-h4" v-text="'编辑评测配置'" />
-      </v-col>
-    </v-row>
     <v-row>
       <v-col cols="12">
         <v-card>
@@ -55,8 +49,10 @@
                   <v-file-input
                     show-size
                     dense
+                    outlined
                     hide-details
                     accept="application/zip"
+                    :placeholder="'上传文件'"
                     @change="loadZip"
                   />
                 </v-col>
@@ -203,7 +199,7 @@
 import JSZip from 'jszip'
 
 export default {
-  name: 'ProblemDataPage',
+  name: 'ProblemDataEditPage',
   validate({ params }) {
     return /^\d+$/.test(params.id)
   },
@@ -218,28 +214,6 @@ export default {
     }
   },
   computed: {
-    breadCrumbs() {
-      return [
-        {
-          text: this.$t('problem.problemList'),
-          disabled: false,
-          to: '/problem',
-          nuxt: true,
-          exact: true
-        },
-        {
-          text: this.$t('problem.problemDetail'),
-          disabled: false,
-          to: `/problem/${this.problem_id}`,
-          nuxt: true,
-          exact: true
-        },
-        {
-          text: this.$t('problem.judgeSettings'),
-          disabled: true
-        }
-      ]
-    },
     currentTotalScore() {
       return (
         this.data.test_case_config &&
@@ -258,7 +232,7 @@ export default {
   methods: {
     async loadData() {
       await this.$store.dispatch('startLoading')
-      const res = await this.$axios.get(`/problem/${this.problem_id}/data/`)
+      const res = await this.$axios.get(`/problem/data/${this.problem_id}/`)
       this.data = res.data
       await this.$store.dispatch('stopLoading')
     },
@@ -325,7 +299,7 @@ export default {
       formData.append('spj_source', null)
       formData.append('delete_cases', JSON.stringify(this.deleteCases))
       this.$axios
-        .post(`/problem/${this.problem_id}/data/`, formData, {
+        .put(`/problem/data/${this.problem_id}/`, formData, {
           headers: { 'Content-Type': 'multipart/form-data' }
         })
         .then(res => {

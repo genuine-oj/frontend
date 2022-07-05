@@ -40,6 +40,7 @@
     "nuxt": "^2.15.8",
     "vue": "^2.6.4",
     "vue-codemirror": "^4.0.6",
+    "vue-multiselect": "^2.1.6",
     "vue-sweetalert2": "^5.0.2",
     "vue-template-compiler": "^2.6.14",
     "vuetify": "^2.6.1",
@@ -63,6 +64,7 @@
     "eslint-plugin-nuxt": "^3.1.0",
     "eslint-plugin-vue": "^8.2.0",
     "glob": "^8.0.3",
+    "nuxt-webpack-optimisations": "^2.2.3",
     "prettier": "^2.5.1",
     "typescript": "^2.8.0",
     "yarn": "^1.22.18"

@@ -11,7 +11,8 @@
     "problemList": "Problem List",
     "problemDetail": "Problem Detail",
     "problemCreate": "Create Problem",
-    "problemEdit": "Edit",
+    "problemEdit": "Edit Problem",
+    "problemJudgeSettings": "Judge Settings",
     "problemTitle": "Problem Title",
     "problemDescription": "Problem Description",
     "inputFormat": "Input Format",
@@ -31,7 +32,11 @@
     "submitCode": "Submit",
     "editCode": "Edit Code",
     "showProblem": "Show Problem",
-    "judgeSettings": "Settings"
+    "tags": "Tags",
+    "tagPlaceHolder": "Add this as new tag",
+    "tagsPlaceHolder": "Search or add a tag",
+    "tagSelectLabel": "Press enter to select",
+    "tagRemoveLabel": "Press enter to remove"
   },
   "problemData": {
     "score": "Score: {score}"
