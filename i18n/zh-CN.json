@@ -11,7 +11,8 @@
     "problemList": "题目列表",
     "problemDetail": "题目详情",
     "problemCreate": "创建题目",
-    "problemEdit": "编辑题目",
+    "problemEdit": "Edit Problem",
+    "problemJudgeSettings": "Judge Settings",
     "problemTitle": "题目标题",
     "problemDescription": "题目描述",
     "inputFormat": "输入格式",
@@ -31,7 +32,11 @@
     "submitCode": "提交代码",
     "editCode": "编辑代码",
     "showProblem": "显示题目",
-    "judgeSettings": "评测配置"
+    "tags": "Tags",
+    "tagPlaceHolder": "Add this as new tag",
+    "tagsPlaceHolder": "Search or add a tag",
+    "tagSelectLabel": "Press enter to select",
+    "tagRemoveLabel": "Press enter to remove"
   },
   "problemData": {
     "score": "{score} 分"
