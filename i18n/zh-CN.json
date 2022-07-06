@@ -11,8 +11,8 @@
     "problemList": "题目列表",
     "problemDetail": "题目详情",
     "problemCreate": "创建题目",
-    "problemEdit": "Edit Problem",
-    "problemJudgeSettings": "Judge Settings",
+    "problemEdit": "编辑题目",
+    "problemJudgeSettings": "判题设置",
     "problemTitle": "题目标题",
     "problemDescription": "题目描述",
     "inputFormat": "输入格式",
@@ -32,23 +32,22 @@
     "submitCode": "提交代码",
     "editCode": "编辑代码",
     "showProblem": "显示题目",
-    "tags": "Tags",
-    "tagPlaceHolder": "Add this as new tag",
-    "tagsPlaceHolder": "Search or add a tag",
-    "tagSelectLabel": "Press enter to select",
-    "tagRemoveLabel": "Press enter to remove"
+    "tags": "标签",
+    "tagPlaceHolder": "将此添加为新标签",
+    "tagsPlaceHolder": "搜索或添加标签",
+    "tagSelectLabel": "按下回车以选择",
+    "tagRemoveLabel": "按下回车以移除"
   },
   "problemData": {
     "score": "{score} 分"
   },
   "problems": {
     "title": "标题",
-    "difficulty": "Difficulty",
-    "tags": "Tags",
+    "difficulty": "难度",
+    "tags": "标签",
     "acRate": "AC 率",
-    "problemSearch": "Search",
-    "status": "Status",
-    "problemDifficulty": "Difficulty",
+    "problemSearch": "搜索",
+    "status": "状态",
     "showTags": "Show tags",
     "showDifficulty": "Show difficulty"
   },
