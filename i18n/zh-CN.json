@@ -12,6 +12,7 @@
     "problemDetail": "题目详情",
     "problemCreate": "创建题目",
     "problemEdit": "编辑题目",
+    "problemJudgeSettings": "判题设置",
     "problemTitle": "题目标题",
     "problemDescription": "题目描述",
     "inputFormat": "输入格式",
@@ -31,14 +32,24 @@
     "submitCode": "提交代码",
     "editCode": "编辑代码",
     "showProblem": "显示题目",
-    "judgeSettings": "评测配置"
+    "tags": "标签",
+    "tagPlaceHolder": "将此添加为新标签",
+    "tagsPlaceHolder": "搜索或添加标签",
+    "tagSelectLabel": "按下回车以选择",
+    "tagRemoveLabel": "按下回车以移除"
   },
   "problemData": {
     "score": "{score} 分"
   },
   "problems": {
     "title": "标题",
-    "acRate": "AC 率"
+    "difficulty": "难度",
+    "tags": "标签",
+    "acRate": "AC 率",
+    "problemSearch": "搜索",
+    "status": "状态",
+    "showTags": "显示标签",
+    "showDifficulty": "显示难度"
   },
   "save": "保存",
   "saveFailed": "保存失败",
@@ -61,5 +72,16 @@
     "usernameNotSet": "用户名不能为空。",
     "passwordNotSet": "密码不能为空。",
     "loginFailed": "登录失败"
+  },
+  "difficulties": {
+    "ALL": "全部",
+    "NOT_ASSIGNED": "无",
+    "PRIMARY": "入门",
+    "CSPJ-": "普及-",
+    "CSPJ_CSPS-": "普及/提高-",
+    "CSPJ+_CSPS": "普及+/提高",
+    "CSPS+_PS-": "提高+/省选-",
+    "PS_NOI-": "省选/NOI-",
+    "NOI_NOI+_CTSC": "NOI/NOI+/CTSC"
   }
 }
