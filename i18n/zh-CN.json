@@ -77,11 +77,11 @@
     "ALL": "全部",
     "NOT_ASSIGNED": "无",
     "PRIMARY": "入门",
-    "CSPJ-": "CSPJ-",
-    "CSPJ_CSPS-": "CSPJ/CSPS-",
-    "CSPJ+_CSPS": "CSPJ+/CSPS",
-    "CSPS+_PS-": "CSPS+/PS-",
-    "PS_NOI-": "PS/NOI-",
+    "CSPJ-": "普及-",
+    "CSPJ_CSPS-": "普及/提高-",
+    "CSPJ+_CSPS": "普及+/提高",
+    "CSPS+_PS-": "提高+/省选-",
+    "PS_NOI-": "省选/NOI-",
     "NOI_NOI+_CTSC": "NOI/NOI+/CTSC"
   }
 }
