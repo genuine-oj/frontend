@@ -97,7 +97,7 @@
               :items="difficulties"
               item-text="text"
               item-value="value"
-              :label="$t('problems.problemDifficulty')"
+              :label="$t('problems.difficulty')"
               hide-details
             />
           </v-col>
