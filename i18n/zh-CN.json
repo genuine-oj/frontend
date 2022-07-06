@@ -48,8 +48,8 @@
     "acRate": "AC 率",
     "problemSearch": "搜索",
     "status": "状态",
-    "showTags": "Show tags",
-    "showDifficulty": "Show difficulty"
+    "showTags": "显示标签",
+    "showDifficulty": "显示难度"
   },
   "save": "保存",
   "saveFailed": "保存失败",
@@ -74,10 +74,10 @@
     "loginFailed": "登录失败"
   },
   "difficulties": {
-    "ALL": "All",
-    "NOT_ASSIGNED": "None",
-    "PRIMARY": "Primary",
-    "CSPJ-": "CSPJ",
+    "ALL": "全部",
+    "NOT_ASSIGNED": "无",
+    "PRIMARY": "入门",
+    "CSPJ-": "CSPJ-",
     "CSPJ_CSPS-": "CSPJ/CSPS-",
     "CSPJ+_CSPS": "CSPJ+/CSPS",
     "CSPS+_PS-": "CSPS+/PS-",
