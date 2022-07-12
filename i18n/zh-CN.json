@@ -1,4 +1,6 @@
 {
+  "failed": "Failed",
+  "success": "Success",
   "cancel": "取消",
   "confirm": "确认",
   "pages": {
@@ -36,10 +38,12 @@
     "tagPlaceHolder": "将此添加为新标签",
     "tagsPlaceHolder": "搜索或添加标签",
     "tagSelectLabel": "按下回车以选择",
-    "tagRemoveLabel": "按下回车以移除"
+    "tagRemoveLabel": "按下回车以移除",
+    "tagSelected": "Selected"
   },
   "problemData": {
-    "score": "{score} 分"
+    "score": "{score} 分",
+    "dataUploadDuplicate": "There is a file with the same name as the original test data in the uploaded file, please correct it before uploading again!"
   },
   "problems": {
     "title": "标题",
@@ -52,13 +56,10 @@
     "showDifficulty": "显示难度"
   },
   "save": "保存",
-  "saveFailed": "保存失败",
-  "saveSuccess": "保存成功",
   "submission": {
     "problem": "题目",
     "submitter": "提交者",
-    "status": "状态",
-    "score": "得分",
+    "result": "Result",
     "usedTime": "用时",
     "memory": "内存",
     "solution": "解答",
@@ -70,8 +71,7 @@
     "password": "密码",
     "login": "登录",
     "usernameNotSet": "用户名不能为空。",
-    "passwordNotSet": "密码不能为空。",
-    "loginFailed": "登录失败"
+    "passwordNotSet": "密码不能为空。"
   },
   "difficulties": {
     "ALL": "全部",
