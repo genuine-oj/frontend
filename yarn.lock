@@ -956,60 +956,53 @@
     "@babel/helper-validator-identifier" "^7.18.6"
     to-fast-properties "^2.0.0"
 
-"@bytemd/plugin-breaks@^1.15.0":
-  version "1.16.0"
-  resolved "https://registry.npmmirror.com/@bytemd/plugin-breaks/-/plugin-breaks-1.16.0.tgz#9e30a0e20c34dc90eff8dd6d92c17f7a99ce4ff9"
-  integrity sha512-N9j49S31b2/Gdqog67Lg4+VVgnfDI9qO+S+xFFmF8przdABi0e4SbdtnfHgRimB8JaWCaSZ3Xj+kMqeWpXOloA==
-  dependencies:
-    remark-breaks "^3.0.2"
-
-"@bytemd/plugin-gemoji@^1.15.0":
-  version "1.16.0"
-  resolved "https://registry.npmmirror.com/@bytemd/plugin-gemoji/-/plugin-gemoji-1.16.0.tgz#68befd4ca40260ee1c74ab76dc4d07f0c1d575d7"
-  integrity sha512-GqMk1fzMydHrxRZevGuw5nBovmlcoiCbdOCpZKBO7HZSdyeHZekVXrw3nCDaLei8O0qc57mMgIN+HiJ2krZQ1w==
+"@bytemd/plugin-gemoji@^1.17.1":
+  version "1.17.1"
+  resolved "https://registry.npmmirror.com/@bytemd/plugin-gemoji/-/plugin-gemoji-1.17.1.tgz#6cdf3777d0727958621847a610336199ecca6eec"
+  integrity sha512-BzHVQfYiGGkDDu+ZV8SGwBWmUYCKGQKTTqVoFTHat1XIRcKrujjQOcSeliwM7msNjlKl6+xo9/JD8OdbltZqKg==
   dependencies:
     remark-gemoji "^7.0.1"
 
-"@bytemd/plugin-gfm@^1.15.0":
-  version "1.16.0"
-  resolved "https://registry.npmmirror.com/@bytemd/plugin-gfm/-/plugin-gfm-1.16.0.tgz#01467900a55b8430955356c1c9013114baa009ce"
-  integrity sha512-70u43CEM46RG7CpdJRyIthOi6vA8Et2xLfqOXXj5nzMXXd6gWzvgAYWY6NuembtawctFTvLYQ2Cwe0IRi9ENpw==
+"@bytemd/plugin-gfm@^1.17.1":
+  version "1.17.1"
+  resolved "https://registry.npmmirror.com/@bytemd/plugin-gfm/-/plugin-gfm-1.17.1.tgz#cd0311371347a421a3465b38c6f7ee69e541eba7"
+  integrity sha512-yu6mosA9Jl3EhjPVgOHZFK1rX5dkGcJ+MnFJ5TAAz5hOAc6ffCW3DPkenB6VW9PhvyL0PO/nMGrs0tfyq4/EGA==
   dependencies:
-    "@icon-park/svg" "^1.4.0"
+    "@icon-park/svg" "^1.4.2"
     remark-gfm "^3.0.1"
 
-"@bytemd/plugin-highlight-ssr@^1.15.0":
-  version "1.16.0"
-  resolved "https://registry.npmmirror.com/@bytemd/plugin-highlight-ssr/-/plugin-highlight-ssr-1.16.0.tgz#13de51766bd4c8afc132c3a0138557e7d8a2774c"
-  integrity sha512-Y18PRrlqnkRPazHzKqH1fap4CMpyUeU1u+aeIR+fJOLUp0zh79GvFORaxzLIjvBYwZBo4Is8BNGh25uymPU0/w==
+"@bytemd/plugin-highlight-ssr@^1.17.1":
+  version "1.17.1"
+  resolved "https://registry.npmmirror.com/@bytemd/plugin-highlight-ssr/-/plugin-highlight-ssr-1.17.1.tgz#84c47ea952931809b4029331f2218e3a9b8690e7"
+  integrity sha512-qC37T9w/xuxseCr0lPN5Y22pSOxSMokczfVeUW58bc0Sbh6uCtsjxN4/O9GmHRgxa1zlk3khhyhWDRGuR4nZCQ==
   dependencies:
     rehype-highlight "^5.0.2"
 
-"@bytemd/plugin-math-ssr@^1.15.0":
-  version "1.16.0"
-  resolved "https://registry.npmmirror.com/@bytemd/plugin-math-ssr/-/plugin-math-ssr-1.16.0.tgz#6f00be64f1d3fe3612d6759e064d7d570a57b26d"
-  integrity sha512-8Hlnr9FTI96E1wi26Jmzg/K3rifVr/XdIL84B3sQKjdAklJyjQ5hsbeR0ZjjUR0Se66GY1bNzZOD8nmxuYbWGw==
+"@bytemd/plugin-math-ssr@^1.17.1":
+  version "1.17.1"
+  resolved "https://registry.npmmirror.com/@bytemd/plugin-math-ssr/-/plugin-math-ssr-1.17.1.tgz#e5436da65860f200e49d28dd92e58228d58dadf4"
+  integrity sha512-14ia9vy8hrKBmd6bDW+5ju67iMlNqLzVznE0o2NxVG6s4TDpuafF31AhN1TuidaBDjc14mhX4k6j0dKAX04bjw==
   dependencies:
-    "@icon-park/svg" "^1.4.0"
+    "@icon-park/svg" "^1.4.2"
     rehype-katex "^6.0.2"
     remark-math "^5.1.1"
 
-"@bytemd/plugin-math@^1.15.0":
-  version "1.16.0"
-  resolved "https://registry.npmmirror.com/@bytemd/plugin-math/-/plugin-math-1.16.0.tgz#63de4d5820d95f2e7f03fbd824847adf11012cef"
-  integrity sha512-iP8I/4pWV//reqFIOJ3s3u9olgMe0DDVTQ/6d8tIxAAbsJRzlbY2EWEIOULTlw3EyxuPmTuyB0vwwYyDnWqkpg==
+"@bytemd/plugin-math@^1.17.1":
+  version "1.17.1"
+  resolved "https://registry.npmmirror.com/@bytemd/plugin-math/-/plugin-math-1.17.1.tgz#aaf731716eb55c5708303f8a526ed037ec5215c5"
+  integrity sha512-nHG83YQ5hluIoe5YiwtB/FVs9CALCRH5MR/VBK7W/+rabX0rXuHJMKKJuJysZAVcpg522yR7RT5VoLsrDr54/g==
   dependencies:
-    "@icon-park/svg" "^1.4.0"
+    "@icon-park/svg" "^1.4.2"
     "@types/katex" "^0.14.0"
     katex "^0.16.0"
     remark-math "^5.1.1"
 
-"@bytemd/vue@^1.15.0":
-  version "1.16.0"
-  resolved "https://registry.npmmirror.com/@bytemd/vue/-/vue-1.16.0.tgz#17e4cc667be8e41f6f753950b5dd4da674154497"
-  integrity sha512-b1+2OF11wG81e8aT+a4V7jNFGParD14rs293DmTGzBD/RB0Wb6oI52XTqYEko3rR6DvWAy236/pnWpA4N8fvxQ==
+"@bytemd/vue@^1.17.1":
+  version "1.17.1"
+  resolved "https://registry.npmmirror.com/@bytemd/vue/-/vue-1.17.1.tgz#2b47ceada8918f10226a617b6141bc8d4bdad154"
+  integrity sha512-gckRJm8tD3dURWGH8QAJ++7eK8m1csh8PE29WExrYgH51150WrWCk535fzXiTTSr002tB4Y5VNn20qysyjEanw==
   dependencies:
-    bytemd "1.16.0"
+    bytemd "1.17.1"
 
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
@@ -1050,7 +1043,7 @@
   resolved "https://registry.npmmirror.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@icon-park/svg@^1.4.0":
+"@icon-park/svg@^1.4.2":
   version "1.4.2"
   resolved "https://registry.npmmirror.com/@icon-park/svg/-/svg-1.4.2.tgz#12838a2549ec8cfc3389089ad335da632bb6285f"
   integrity sha512-1X0DA+1e0R0liYvw+Nb2BQmF1oEo/wS3o/JYkQYifPJXCGYij2vN9sJf/NNhbzDsJWTg4W2bbzZjJvC7Q4w4oQ==
@@ -2978,12 +2971,12 @@ builtin-status-codes@^3.0.0:
   resolved "https://registry.npmmirror.com/builtin-status-codes/-/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
   integrity sha512-HpGFw18DgFWlncDfjTa2rcQ4W88O1mC8e8yZ2AvQY5KDaktSTwo+KRf6nHK6FRI5FyRyb/5T6+TSxfP7QyGsmQ==
 
-bytemd@1.16.0, bytemd@^1.15.0:
-  version "1.16.0"
-  resolved "https://registry.npmmirror.com/bytemd/-/bytemd-1.16.0.tgz#66cfa6aa2d4d32cdc96d825307944296435dbd33"
-  integrity sha512-fETC9a01A2XGIuTinaZICKDxpey+u9dI9hhFPMQZSxcGS+o984dydg3nVA0ig4Y3NlUOVHd1YDyvujy2rQSNzw==
+bytemd@1.17.1, bytemd@^1.17.1:
+  version "1.17.1"
+  resolved "https://registry.npmmirror.com/bytemd/-/bytemd-1.17.1.tgz#f9e80e5afdbba805c0c70b6c2631feded2d3e46f"
+  integrity sha512-fibXmO4WLa6wdRcfWBese+IuMbb9+R026l12GbjalGD7BSrImEb+fRrtZhvbQiB1kKg11LQCffmF/5g21gPuVw==
   dependencies:
-    "@icon-park/svg" "^1.4.0"
+    "@icon-park/svg" "^1.4.2"
     "@popperjs/core" "^2.11.5"
     "@types/codemirror" "^5.60.5"
     "@types/hast" "^2.3.4"
@@ -3001,7 +2994,7 @@ bytemd@1.16.0, bytemd@^1.15.0:
     tippy.js "^6.3.7"
     unified "^10.1.2"
     unist-util-visit "^4.1.0"
-    vfile "^5.3.3"
+    vfile "^5.3.4"
     word-count "^0.2.2"
 
 bytes@3.0.0:
@@ -3350,7 +3343,7 @@ codemirror-ssr@^0.65.0:
   resolved "https://registry.npmmirror.com/codemirror-ssr/-/codemirror-ssr-0.65.0.tgz#2da55cb21fbe6142df10aece7e286834734c0fb3"
   integrity sha512-ofTAfPkQV56SYFfymNMYJ1ELo3+Jnkw3mOLgnIiQjhonwNmNzX1OFvnihAnYRXL0PWl2kT7s0gKrLc2ExshK4g==
 
-codemirror@^5.41.0, codemirror@^5.65.3:
+codemirror@^5.41.0:
   version "5.65.6"
   resolved "https://registry.npmmirror.com/codemirror/-/codemirror-5.65.6.tgz#fc313797331cbeb3bcab0652d1ec9d0f40c23ab5"
   integrity sha512-zNihMSMoDxK9Gqv9oEyDT8oM51rcRrQ+IEo2zyS48gJByBq5Fj8XuNEguMra+MuIOuh6lkpnLUJeL70DoTt6yw==
@@ -9195,15 +9188,6 @@ relateurl@^0.2.7:
   resolved "https://registry.npmmirror.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
   integrity sha512-G08Dxvm4iDN3MLM0EsP62EDV9IuhXPR6blNz6Utcp7zyV3tr4HVNINt6MpaRWbxoOHT3Q7YN2P+jaHX8vUbgog==
 
-remark-breaks@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.npmmirror.com/remark-breaks/-/remark-breaks-3.0.2.tgz#f466b9d3474d7323146c0149fc1496dabadd908e"
-  integrity sha512-x96YDJ9X+Ry0/JNZFKfr1hpcAKvGYWfUTszxY9RbxKEqq6uzPPoLCuHdZsLPZZUdAv3nCROyc7FPrQLWr2rxyw==
-  dependencies:
-    "@types/mdast" "^3.0.0"
-    unified "^10.0.0"
-    unist-util-visit "^4.0.0"
-
 remark-gemoji@^7.0.1:
   version "7.0.1"
   resolved "https://registry.npmmirror.com/remark-gemoji/-/remark-gemoji-7.0.1.tgz#42488adb9a0731dc82cdcde45f8e7bd61d795303"
@@ -10832,7 +10816,7 @@ vfile-message@^3.0.0:
     "@types/unist" "^2.0.0"
     unist-util-stringify-position "^3.0.0"
 
-vfile@^5.0.0, vfile@^5.3.3:
+vfile@^5.0.0, vfile@^5.3.4:
   version "5.3.4"
   resolved "https://registry.npmmirror.com/vfile/-/vfile-5.3.4.tgz#bbb8c96b956693bbf70b2c67fdb5781dff769b93"
   integrity sha512-KI+7cnst03KbEyN1+JE504zF5bJBZa+J+CrevLeyIMq0aPU681I2rQ5p4PlnQ6exFtWiUrg26QUdFMnAKR6PIw==

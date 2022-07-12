@@ -11,7 +11,44 @@
         :server-items-length="count"
         :loading="loading"
         disable-sort
-      />
+      >
+        <template #item.id="{ item }">
+          <nuxt-link
+            :to="{ name: 'submission-id', params: { id: item.id } }"
+            no-prefetch
+            v-text="item.id"
+          />
+        </template>
+        <template #item.problem="{ item }">
+          <nuxt-link
+            :to="{ name: 'problem-id', params: { id: item.problem.id } }"
+            no-prefetch
+            v-text="item.problem.title"
+          />
+        </template>
+        <template #item.result="{ item }">
+          <nuxt-link
+            :to="{ name: 'submission-id', params: { id: item.id } }"
+            no-prefetch
+          >
+            <v-chip
+              class="px-2"
+              style="cursor: pointer"
+              :color="item.color"
+              small
+              dark
+              label
+              v-text="item.status"
+            />
+            <span
+              v-if="!item.judging"
+              :class="['text-h7', 'font-weight-black', `${item.color}--text`]"
+              style="vertical-align: middle"
+              v-text="item.score"
+            />
+          </nuxt-link>
+        </template>
+      </v-data-table>
     </v-col>
   </v-row>
 </template>
@@ -30,30 +67,25 @@ export default {
   computed: {
     headers() {
       return [
-        { text: '#', value: 'id', width: '1%' },
+        { text: '#', value: 'id' },
         {
           text: this.$t('submission.problem'),
-          value: 'problem.title',
-          width: '23%'
+          value: 'problem'
         },
-        { text: this.$t('submission.submitter'), value: 'user', width: '10%' },
-        { text: this.$t('submission.status'), value: 'status', width: '10%' },
-        { text: this.$t('submission.score'), value: 'score', width: '10%' },
+        { text: this.$t('submission.submitter'), value: 'user' },
+        { text: this.$t('submission.result'), value: 'result' },
         {
           text: this.$t('submission.usedTime'),
-          value: 'used_time',
-          width: '10%'
+          value: 'used_time'
         },
-        { text: this.$t('submission.memory'), value: 'memory', width: '10%' },
+        { text: this.$t('submission.memory'), value: 'memory' },
         {
           text: this.$t('submission.solution'),
-          value: 'solution',
-          width: '15%'
+          value: 'solution'
         },
         {
           text: this.$t('submission.submitTime'),
-          value: 'submit_time',
-          width: '21%'
+          value: 'submit_time'
         }
       ]
     },
@@ -64,10 +96,17 @@ export default {
           problem: e.problem,
           user:
             e.user.username + (e.user.real_name ? `(${e.user.real_name})` : ''),
+          judging: [
+            this.$utils.codeJudge.judgeStatus.PENDING,
+            this.$utils.codeJudge.judgeStatus.JUDGING
+          ].includes(e.status),
           status: this.$utils.codeJudge.judgeStatus.getDisplay(e.status),
+          color: this.$utils.codeJudge.judgeStatus.getColorClass(e.status),
           score: e.score,
-          used_time: e.execute_time ?? '--',
-          memory: this.$utils.misc.parseSize(e.execute_memory) ?? '--',
+          used_time: e.execute_time ? `${e.execute_time} ms` : '--',
+          memory: e.execute_memory
+            ? this.$utils.misc.parseSize(e.execute_memory)
+            : '--',
           solution:
             this.$utils.codeJudge.languages.getDisplay(e.language) +
             ' / ' +
@@ -97,7 +136,7 @@ export default {
           this.submissionsData = res.data.results
         })
         .catch(err => {
-          this.$swal('提交记录加载失败', err, 'error')
+          this.$swal(this.$t('failed'), err, 'error')
         })
         .finally(() => {
           this.loading = false

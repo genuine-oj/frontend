@@ -31,6 +31,18 @@ const judgeStatusDisplay = {
   SYSTEM_ERROR: 'SE'
 }
 
+const judgeStatusColor = {
+  PENDING: 'cyan',
+  JUDGING: 'blue',
+  COMPILE_ERROR: 'indigo',
+  WRONG_ANSWER: 'red',
+  ACCEPTED: 'green',
+  TIME_LIMIT_EXCEEDED: 'amber',
+  MEMORY_LIMIT_EXCEEDED: 'amber',
+  RUNTIME_ERROR: 'purple',
+  SYSTEM_ERROR: 'grey'
+}
+
 const languages = {
   C: 'c',
   CPP: 'cpp'
@@ -49,8 +61,18 @@ const initDisplay = (obj, objDisplay) => {
   obj.getDisplay = value => displays[value]
 }
 
+const initColor = (obj, objColor) => {
+  const color = {}
+  for (const key in obj) {
+    color[obj[key]] = objColor[key]
+  }
+  obj.getColorClass = value => color[value]
+}
+
 initDisplay(judgeStatus, judgeStatusDisplay)
 initDisplay(languages, languagesDisplay)
+
+initColor(judgeStatus, judgeStatusColor)
 
 const parseSize = value => {
   let size

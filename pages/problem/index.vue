@@ -25,7 +25,7 @@
                   v-on="on"
                   @click="switchHeader"
                 >
-                  <v-icon> mdi-swap-horizontal </v-icon>
+                  <v-icon> mdi-swap-horizontal</v-icon>
                 </v-btn>
               </template>
               <span v-text="$t('problems.showTags')" />
@@ -42,14 +42,18 @@
                   v-on="on"
                   @click="switchHeader"
                 >
-                  <v-icon> mdi-swap-horizontal </v-icon>
+                  <v-icon> mdi-swap-horizontal</v-icon>
                 </v-btn>
               </template>
               <span v-text="$t('problems.showDifficulty')" />
             </v-tooltip>
           </template>
           <template #item.title="{ item }">
-            <a @click="showDetail(item)">{{ item.title }}</a>
+            <nuxt-link
+              :to="{ name: 'problem-id', params: { id: item.id } }"
+              no-prefetch
+              v-text="item.title"
+            />
           </template>
           <template #item.difficulty="{ item }">
             {{ difficultyMap[item.difficulty] }}
@@ -102,7 +106,7 @@
             />
           </v-col>
           <v-col cols="12">
-            <v-btn color="primary" block exact to="/problem/create">
+            <v-btn color="primary" block :to="{ name: 'problem-create' }">
               {{ $t('problem.problemCreate') }}
             </v-btn>
           </v-col>
@@ -214,11 +218,6 @@ export default {
     this.loadData()
   },
   methods: {
-    showDetail(item) {
-      this.$router.push({
-        path: `/problem/${item.id}`
-      })
-    },
     loadData() {
       const limit = this.options.itemsPerPage
       const offset = (this.options.page - 1) * this.options.itemsPerPage
@@ -244,7 +243,7 @@ export default {
           this.problems = res.data.results
         })
         .catch(err => {
-          this.$swal('题目加载失败', err, 'error')
+          this.$swal(this.$t('failed'), err, 'error')
         })
         .finally(() => {
           this.loading = false

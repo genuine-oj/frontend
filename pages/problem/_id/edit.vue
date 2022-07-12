@@ -72,12 +72,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-::v-deep .bytemd {
-  height: 450px;
-}
-
-.mono-space {
-  font-family: Consolas, Monaco, Lucida Console, Liberation Mono, monospace;
-}
-</style>
+<style lang="scss" scoped></style>

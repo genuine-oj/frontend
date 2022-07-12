@@ -10,7 +10,6 @@
 <script>
 import { Editor } from '@bytemd/vue'
 import 'bytemd/dist/index.css'
-import breaks from '@bytemd/plugin-breaks'
 import gemoji from '@bytemd/plugin-gemoji'
 import gfm from '@bytemd/plugin-gfm'
 import highlight from '@bytemd/plugin-highlight-ssr'
@@ -51,7 +50,6 @@ export default {
     },
     plugins() {
       return [
-        breaks(),
         gemoji(),
         gfm({
           locale: require(`@bytemd/plugin-gfm/locales/${this.localeName}.json`)
@@ -81,10 +79,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep code {
+:deep(code) {
   background-color: transparent !important;
 }
-::v-deep .bytemd-toolbar-right [bytemd-tippy-path='5'] {
+
+:deep(div.markdown-body) {
+  font-size: 18px;
+}
+
+:deep(.bytemd-toolbar-right [bytemd-tippy-path='5']) {
   display: none;
 }
 </style>

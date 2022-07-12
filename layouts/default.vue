@@ -43,7 +43,7 @@
         </template>
         <v-list nav dense>
           <v-list-item
-            v-for="locale in availableLocales"
+            v-for="locale in $i18n.locales"
             :key="locale.code"
             @click="$i18n.setLocale(locale.code)"
           >
@@ -55,7 +55,7 @@
         v-if="!isAuthenticated"
         :title="$t('login.login')"
         icon
-        @click="$router.push('/user/login')"
+        :to="{ name: 'user-login' }"
       >
         <v-icon> mdi-login-variant</v-icon>
       </v-btn>
@@ -105,37 +105,31 @@ export default {
     return {
       drawer: this.$vuetify.breakpoint.mdAndUp,
       mini: this.$vuetify.breakpoint.mdAndUp,
-      i18n: {
-        locals: this.$i18n.locales.filter(i => i.code !== this.$i18n.locale)
-      },
       isRouterAlive: true
     }
   },
   computed: {
-    availableLocales() {
-      return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale)
-    },
     navItems() {
       return [
         {
           icon: 'mdi-home-outline',
           title: this.$t('pages.home'),
-          to: '/'
+          to: { name: 'index' }
         },
         {
           icon: 'mdi-trophy-outline',
           title: this.$t('pages.contests'),
-          to: '/contest'
+          to: { name: 'contest' }
         },
         {
           icon: 'mdi-format-list-text',
           title: this.$t('pages.problems'),
-          to: '/problem'
+          to: { name: 'problem' }
         },
         {
           icon: 'mdi-timer-sand',
           title: this.$t('pages.submissions'),
-          to: '/submission'
+          to: { name: 'submission' }
         }
       ]
     },

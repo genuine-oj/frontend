@@ -15,12 +15,12 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@mdi/font/css/materialdesignicons.min.css',
-    '@sweetalert2/theme-material-ui'
+    '@sweetalert2/theme-material-ui',
+    'styles/global.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/codemirror.client.js',
     '~/plugins/axios.js',
     '~/plugins/route.js',
     '~/plugins/vuex-persist.js',
@@ -57,9 +57,15 @@ export default {
     '/api': {
       target: 'http://localhost:8000',
       pathRewrite: {
-        '^/api': '',
-        changeOrigin: true
-      }
+        '^/api': ''
+      },
+      changeOrigin: true,
+      ws: false
+    },
+    '/ws': {
+      target: 'http://localhost:8000',
+      changeOrigin: true,
+      ws: true
     }
   },
 
@@ -78,7 +84,6 @@ export default {
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     treeShake: true,
-    customVariables: ['~/assets/css/variables.scss'],
     optionsPath: '~/vuetify.options.js',
     defaultAssets: false
   },
@@ -127,6 +132,7 @@ export default {
         include: /node_modules/,
         type: 'javascript/auto'
       })
-    }
+    },
+    transpile: ['codemirror-ssr']
   }
 }

@@ -129,6 +129,7 @@
             :options="tags"
             :tag-placeholder="$t('problem.tagPlaceHolder')"
             :select-label="$t('problem.tagSelectLabel')"
+            :selected-label="$t('problem.tagSelected')"
             :deselect-label="$t('problem.tagRemoveLabel')"
             :placeholder="$t('problem.tagsPlaceHolder')"
             :multiple="true"
@@ -222,11 +223,11 @@ export default {
       res
         .then(res => {
           this.problem = res.data
-          this.$swal(this.$t('saveSuccess'), '', 'success')
+          this.$swal(this.$t('success'), '', 'success')
         })
         .catch(err => {
           if (typeof err === 'string')
-            this.$swal(this.$t('saveFailed'), err, 'error')
+            this.$swal(this.$t('failed'), err, 'error')
           else this.errors = err
         })
     },
@@ -243,11 +244,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep .bytemd {
+:deep(.bytemd) {
   height: 450px;
 }
 
-::v-deep .multiselect__tags {
+:deep(.multiselect__tags) {
   border-radius: 0;
 }
 

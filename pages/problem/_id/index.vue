@@ -76,7 +76,7 @@
               <codemirror
                 ref="codemirror"
                 v-model="code"
-                :mime="selectedLanguage.mime"
+                :language="selectedLanguage.slug"
               />
             </v-col>
           </v-row>
@@ -98,7 +98,7 @@
             <v-col cols="12">
               <v-btn
                 color="indigo"
-                :to="`/problem/${problem.id}/edit`"
+                :to="{ name: 'problem-id-edit', params: { id: problem.id } }"
                 exact
                 dark
                 block
@@ -203,8 +203,8 @@ export default {
       problem: {},
       showCode: false,
       languages: [
-        { name: 'C', slug: 'c', mime: 'text/x-csrc', ext: 'c' },
-        { name: 'C++', slug: 'cpp', mime: 'text/x-c++src', ext: 'cpp' }
+        { name: 'C', slug: 'c', ext: 'c' },
+        { name: 'C++', slug: 'cpp', ext: 'cpp' }
       ],
       selectedLanguage: undefined,
       code: '',
@@ -298,17 +298,24 @@ export default {
       reader.readAsText(file)
     },
     submitCode() {
-      this.$axios.post('/submission/', {
-        problem_id: this.problem.id,
-        source: this.code,
-        language: this.selectedLanguage.slug
-      })
+      this.$axios
+        .post('/submission/', {
+          problem_id: this.problem.id,
+          source: this.code,
+          language: this.selectedLanguage.slug
+        })
+        .then(res => {
+          this.$router.push({
+            name: 'submission-id',
+            params: { id: res.data.id }
+          })
+        })
     }
   }
 }
 </script>
 <style lang="scss" scoped>
-::v-deep .CodeMirror {
+:deep(.CodeMirror) {
   height: 500px;
 }
 

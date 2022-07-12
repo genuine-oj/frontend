@@ -1,4 +1,6 @@
 {
+  "failed": "Failed",
+  "success": "Success",
   "cancel": "Cancel",
   "confirm": "Confirm",
   "pages": {
@@ -36,10 +38,12 @@
     "tagPlaceHolder": "Add this as new tag",
     "tagsPlaceHolder": "Search or add a tag",
     "tagSelectLabel": "Press enter to select",
-    "tagRemoveLabel": "Press enter to remove"
+    "tagRemoveLabel": "Press enter to remove",
+    "tagSelected": "Selected"
   },
   "problemData": {
-    "score": "Score: {score}"
+    "score": "Score: {score}",
+    "dataUploadDuplicate": "There is a file with the same name as the original test data in the uploaded file, please correct it before uploading again!"
   },
   "problems": {
     "title": "Title",
@@ -52,13 +56,10 @@
     "showDifficulty": "Show difficulty"
   },
   "save": "Save",
-  "saveFailed": "Save Failed",
-  "saveSuccess": "Save Success",
   "submission": {
     "problem": "Problem",
     "submitter": "Submitter",
-    "status": "Status",
-    "score": "Score",
+    "result": "Result",
     "usedTime": "Time",
     "memory": "Memory",
     "solution": "Solution",
@@ -70,8 +71,7 @@
     "password": "password",
     "login": "Login",
     "usernameNotSet": "Username field is empty.",
-    "passwordNotSet": "Password field is empty.",
-    "loginFailed": "Login failed"
+    "passwordNotSet": "Password field is empty."
   },
   "difficulties": {
     "ALL": "All",

@@ -53,11 +53,11 @@ export default {
         .post(`/problem/`, this.problem)
         .then(res => {
           this.problem = res.data
-          this.$swal(this.$t('saveSuccess'), '', 'success')
+          this.$swal(this.$t('success'), '', 'success')
         })
         .catch(err => {
           if (typeof err === 'string')
-            this.$swal(this.$t('saveFailed'), err, 'error')
+            this.$swal(this.$t('failed'), err, 'error')
           else this.errors = err
         })
     }
@@ -65,12 +65,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-::v-deep .bytemd {
-  height: 450px;
-}
-
-.mono-space {
-  font-family: Consolas, Monaco, Lucida Console, Liberation Mono, monospace;
-}
-</style>
+<style lang="scss" scoped></style>

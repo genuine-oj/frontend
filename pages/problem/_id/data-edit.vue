@@ -256,8 +256,8 @@ export default {
         if (pos >= 0) {
           if (currentData.includes(v)) {
             this.$swal(
-              '加载失败',
-              '上传的文件中存在与原测试数据同名文件，请修正后再次上传！',
+              this.$t('failed'),
+              this.$t('problemData.dataUploadDuplicate'),
               'error'
             )
             return
@@ -306,11 +306,11 @@ export default {
           this.data = res.data
           this.newCases = []
           this.deleteCases = []
-          this.$swal(this.$t('saveSuccess'), '', 'success')
+          this.$swal(this.$t('success'), '', 'success')
         })
         .catch(err => {
           if (typeof err === 'string')
-            this.$swal(this.$t('saveFailed'), err, 'error')
+            this.$swal(this.$t('failed'), err, 'error')
         })
     },
     updateScore(value, item) {
@@ -365,7 +365,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep .score-editor {
+:deep(.score-editor) {
   width: 52px;
   font-size: 0.75rem;
 

@@ -75,7 +75,7 @@ export default {
           this.$store.commit('updateUser', res.data)
         })
         .catch(err => {
-          this.$swal(this.$t('login.loginFailed'), err, 'error')
+          this.$swal(this.$t('failed'), err, 'error')
         })
         .finally(() => {
           this.login_loading = false
