@@ -3,7 +3,8 @@
     <v-col cols="12" md="8">
       <v-tabs v-model="tab">
         <v-tab v-if="!submission.pending && !submission.ce_se"
-          >测试点信息</v-tab
+        >测试点信息
+        </v-tab
         >
         <!-- TODO: i18n -->
         <v-tab v-if="!submission.pending && submission.log">编译信息</v-tab>
@@ -13,49 +14,34 @@
       <v-tabs-items v-model="tab" class="mt-3">
         <v-tab-item v-if="!submission.pending && !submission.ce_se">
           <v-card flat>
-            <v-simple-table>
-              <template #default>
-                <tbody>
-                  <tr v-for="item in submission.detail" :key="item.case_name">
-                    <td>
-                      <v-chip
-                        outlined
-                        label
-                        @click="loadTestPoint(item.case_name)"
-                      >
-                        <v-icon left>mdi-pound</v-icon>
-                        {{ item.case_name }}
-                      </v-chip>
-                    </td>
-                    <td>
-                      <v-chip
-                        :color="
-                          $utils.codeJudge.judgeStatus.getColorClass(
-                            item.status
-                          )
-                        "
-                        dark
-                        v-text="
-                          $utils.codeJudge.judgeStatus.getDisplay(item.status)
-                        "
-                      />
-                    </td>
-                    <td>
-                      <v-chip>
-                        <v-icon left>mdi-clock</v-icon>
-                        {{ item.statistics.time }} ms
-                      </v-chip>
-                    </td>
-                    <td>
-                      <v-chip>
-                        <v-icon left>mdi-memory</v-icon>
-                        {{ $utils.misc.parseSize(item.statistics.memory) }}
-                      </v-chip>
-                    </td>
-                  </tr>
-                </tbody>
-              </template>
-            </v-simple-table>
+            <v-item-group v-model="testPointIndex">
+              <div class="d-flex flex-wrap">
+                <v-item
+                  v-for="(item, index) in submission.detail"
+                  :key="item.case_name"
+                  v-slot="{ active, toggle }"> <!-- active slot -->
+                  <v-alert
+                    :color="$utils.codeJudge.judgeStatus.getColorClass(item.status)"
+                    class="d-flex align-center justify-center ma-2 pa-0"
+                    style="cursor: pointer"
+                    :outlined="!active"
+                    :dark="active"
+                    width="100"
+                    height="100"
+                    @click="toggle"
+                  >
+                    <span class="id">#{{ index + 1 }}</span>
+                    <div
+                      class="text-h5 mt-4 text-center"
+                      v-text="$utils.codeJudge.judgeStatus.getDisplay(item.status)"
+                    />
+                    <div class="mt-2" style="font-size: .45em">
+                      {{ item.statistics.time }}ms/{{ $utils.misc.parseSize(item.statistics.memory) }}
+                    </div>
+                  </v-alert>
+                </v-item>
+              </div>
+            </v-item-group>
           </v-card>
         </v-tab-item>
 
@@ -83,7 +69,7 @@
       </v-tabs-items>
     </v-col>
     <v-col md="1" />
-    <v-col cols="12" md="3"> </v-col>
+    <v-col cols="12" md="3"></v-col>
   </v-row>
 </template>
 
@@ -106,8 +92,19 @@ export default {
     return {
       submissionData: {},
       tab: 0,
+      testPointIndex: undefined,
       ws: undefined
     }
+  },
+  async fetch() {
+    await this.loadData()
+    if (
+      [
+        this.$utils.codeJudge.judgeStatus.PENDING,
+        this.$utils.codeJudge.judgeStatus.JUDGING
+      ].includes(this.submissionData.status)
+    )
+      this.initWebSocket()
   },
   computed: {
     submission() {
@@ -123,16 +120,18 @@ export default {
       }
     }
   },
-  async mounted() {
+  watch: {
+    testPointIndex: {
+      async handler(value) {
+        if (value === undefined) return
+        const data = await this.loadTestPoint(this.submissionData.detail[value].case_name)
+        console.log(data)
+      },
+      immediate: true
+    }
+  },
+  created() {
     this.submissionData = { id: this.$route.params.id }
-    await this.loadData()
-    if (
-      [
-        this.$utils.codeJudge.judgeStatus.PENDING,
-        this.$utils.codeJudge.judgeStatus.JUDGING
-      ].includes(this.submissionData.status)
-    )
-      this.initWebSocket()
   },
   methods: {
     async loadData() {
@@ -162,14 +161,20 @@ export default {
       }
     },
     loadTestPoint(name) {
-      this.$axios
+      return this.$axios
         .get(`/submission/${this.submissionData.id}/test-point/${name}/`)
-        .then(res => {
-          console.log(res.data)
-        })
+        .then(res => res.data)
     }
   }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.id {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 6px;
+  font-size: .65em;
+}
+</style>

@@ -65,7 +65,7 @@ export default {
       ]
     }
   },
-  mounted() {
+  created() {
     this.problem_id = this.$route.params.id
   },
   methods: {}

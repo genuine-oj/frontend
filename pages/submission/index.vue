@@ -1,7 +1,6 @@
 <template>
   <v-row>
     <v-col cols="12">
-      {{ submissions }}
       <v-data-table
         :headers="headers"
         :items="submissions"
@@ -10,6 +9,7 @@
         :options.sync="options"
         :server-items-length="count"
         :loading="loading"
+        :footer-props="{'items-per-page-options': [10, 20, 50]}"
         disable-sort
       >
         <template #item.id="{ item }">
@@ -103,7 +103,7 @@ export default {
           status: this.$utils.codeJudge.judgeStatus.getDisplay(e.status),
           color: this.$utils.codeJudge.judgeStatus.getColorClass(e.status),
           score: e.score,
-          used_time: e.execute_time ? `${e.execute_time} ms` : '--',
+          used_time: e.execute_time ? `${e.execute_time}ms` : '--',
           memory: e.execute_memory
             ? this.$utils.misc.parseSize(e.execute_memory)
             : '--',
@@ -116,15 +116,23 @@ export default {
       })
     }
   },
-  mounted() {
-    this.loadData()
+  watch: {
+    options: {
+      handler() {
+        this.loadData()
+      },
+      deep: true
+    }
+  },
+  async mounted() {
+    await this.loadData()
   },
   methods: {
-    loadData() {
+    async loadData() {
       const limit = this.options.itemsPerPage
       const offset = (this.options.page - 1) * this.options.itemsPerPage
       this.loading = true
-      this.$axios
+      await this.$axios
         .get('/submission/', {
           params: {
             limit,

@@ -199,12 +199,14 @@ export default {
       tags: []
     }
   },
-  mounted() {
+  async fetch() {
     if (this.mode === 'edit') {
-      this.problem.id = this.$route.params.id
-      this.loadData()
+      await this.loadData()
     }
-    this.loadTags()
+    await this.loadTags()
+  },
+  created() {
+    this.problem.id = this.$route.params.id
   },
   methods: {
     async loadData() {
@@ -231,8 +233,8 @@ export default {
           else this.errors = err
         })
     },
-    loadTags() {
-      this.$axios.get('/problem/tag/').then(res => {
+    async loadTags() {
+      await this.$axios.get('/problem/tag/').then(res => {
         this.tags = res.data.map(v => v.name)
       })
     },

@@ -73,8 +73,7 @@ export default {
   pwa: {
     manifest: {
       name: 'Genuine OJ',
-      short_name: 'Genuine',
-      lang: 'en'
+      short_name: 'Genuine'
     },
     icon: {
       fileName: 'logo.png'
@@ -114,9 +113,7 @@ export default {
     plugins: ['utc', 'timezone']
   },
 
-  loading: {
-    color: '#03A9F4'
-  },
+  loading: false,
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

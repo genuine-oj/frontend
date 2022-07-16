@@ -11,6 +11,7 @@
           :options.sync="options"
           :server-items-length="count"
           :loading="loading"
+          :footer-props="{'items-per-page-options': [5, 10, 20, 50]}"
           mobile-breakpoint="0"
           multi-sort
         >
@@ -214,11 +215,11 @@ export default {
       this.loadData()
     }
   },
-  mounted() {
-    this.loadData()
+  async mounted() {
+    await this.loadData()
   },
   methods: {
-    loadData() {
+    async loadData() {
       const limit = this.options.itemsPerPage
       const offset = (this.options.page - 1) * this.options.itemsPerPage
       const ordering = []
@@ -227,7 +228,7 @@ export default {
         ordering.push(desc + value)
       })
       this.loading = true
-      this.$axios
+      await this.$axios
         .get('/problem/', {
           params: {
             limit,

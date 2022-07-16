@@ -213,6 +213,9 @@ export default {
       cleanedZipBlob: null
     }
   },
+  async fetch() {
+    await this.loadData()
+  },
   computed: {
     currentTotalScore() {
       return (
@@ -225,9 +228,8 @@ export default {
       )
     }
   },
-  mounted() {
+  created() {
     this.problem_id = this.$route.params.id
-    this.loadData()
   },
   methods: {
     async loadData() {

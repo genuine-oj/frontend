@@ -108,6 +108,9 @@ export default {
       isRouterAlive: true
     }
   },
+  head() {
+    return this.$nuxtI18nHead({ addSeoAttributes: true })
+  },
   computed: {
     navItems() {
       return [

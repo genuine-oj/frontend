@@ -226,6 +226,9 @@ export default {
       ]
     }
   },
+  async fetch() {
+    await this.loadData()
+  },
   head() {
     return {
       title: this.title
@@ -257,10 +260,9 @@ export default {
       )
     }
   },
-  mounted() {
+  created() {
     this.selectedLanguage = this.languages[1]
     this.problem = { id: this.$route.params.id }
-    this.loadData()
   },
   methods: {
     async loadData() {

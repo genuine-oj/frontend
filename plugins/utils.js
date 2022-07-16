@@ -76,11 +76,11 @@ initColor(judgeStatus, judgeStatusColor)
 
 const parseSize = value => {
   let size
-  if (value < 0.1 * 1024) size = value.toFixed(2) + ' B'
-  else if (value < 0.1 * 1024 * 1024) size = (value / 1024).toFixed(2) + ' KB'
+  if (value < 0.1 * 1024) size = value.toFixed(2) + 'B'
+  else if (value < 0.1 * 1024 * 1024) size = (value / 1024).toFixed(2) + 'KB'
   else if (value < 0.1 * 1024 * 1024 * 1024)
-    size = (value / (1024 * 1024)).toFixed(2) + ' MB'
-  else size = (value / (1024 * 1024 * 1024)).toFixed(2) + ' GB'
+    size = (value / (1024 * 1024)).toFixed(2) + 'MB'
+  else size = (value / (1024 * 1024 * 1024)).toFixed(2) + 'GB'
   const sizeStr = size + ''
   const index = sizeStr.indexOf('.')
   const dou = sizeStr.substr(index + 1, 2)
